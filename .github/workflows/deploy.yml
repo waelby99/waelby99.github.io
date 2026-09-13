@@ -1,0 +1,166 @@
+name: Build and Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+
+jobs:
+
+  # ========================================================
+  # CI - BUILD ANGULAR
+  # ========================================================
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+
+        with:
+          node-version: 24
+          cache: npm
+
+
+      - name: Install dependencies
+        run: npm ci
+
+
+      - name: Determine GitHub Pages base href
+        id: base
+
+        shell: bash
+
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+
+          if [[ "$REPO_NAME" == "${GITHUB_REPOSITORY_OWNER}.github.io" ]]; then
+            BASE_HREF="/"
+          else
+            BASE_HREF="/${REPO_NAME}/"
+          fi
+
+          echo "base_href=$BASE_HREF" >> "$GITHUB_OUTPUT"
+
+          echo "Using base href: $BASE_HREF"
+
+
+      - name: Build Angular application
+        run: |
+          npm run build -- \
+            --base-href="${{ steps.base.outputs.base_href }}"
+
+
+      - name: Find Angular output directory
+        id: output
+
+        shell: bash
+
+        run: |
+          OUTPUT_DIR=$(find dist -type f -name index.html -printf '%h\n' | head -n 1)
+
+          if [[ -z "$OUTPUT_DIR" ]]; then
+            echo "Could not find Angular index.html"
+            exit 1
+          fi
+
+          echo "Angular output: $OUTPUT_DIR"
+
+          echo "path=$OUTPUT_DIR" >> "$GITHUB_OUTPUT"
+
+
+      # ----------------------------------------------------
+      # GitHub Pages SPA fallback
+      # ----------------------------------------------------
+
+      - name: Create GitHub Pages fallback
+        if: github.event_name == 'push'
+
+        shell: bash
+
+        run: |
+          cp \
+            "${{ steps.output.outputs.path }}/index.html" \
+            "${{ steps.output.outputs.path }}/404.html"
+
+
+      # ----------------------------------------------------
+      # Configure Pages
+      # ----------------------------------------------------
+
+      - name: Configure GitHub Pages
+        if: github.event_name == 'push'
+
+        uses: actions/configure-pages@v5
+
+
+      # ----------------------------------------------------
+      # Upload compiled Angular files
+      # ----------------------------------------------------
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push'
+
+        uses: actions/upload-pages-artifact@v4
+
+        with:
+          path: ${{ steps.output.outputs.path }}
+
+
+  # ========================================================
+  # CD - DEPLOY
+  # ========================================================
+
+  deploy:
+
+    if: github.event_name == 'push'
+
+    needs:
+      - build
+
+    runs-on:
+      ubuntu-latest
+
+    environment:
+
+      name:
+        github-pages
+
+      url:
+        ${{ steps.deployment.outputs.page_url }}
+
+
+    steps:
+
+      - name: Deploy to GitHub Pages
+
+        id:
+          deployment
+
+        uses:
+          actions/deploy-pages@v4
