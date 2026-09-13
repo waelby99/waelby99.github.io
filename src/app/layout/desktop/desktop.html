@@ -1,0 +1,870 @@
+<div
+  class="desktop"
+
+  [style.background-image]="
+    'url(' +
+    desktopService.currentWallpaper() +
+    ')'
+  "
+
+  [style.background-size]="
+    desktopBackgroundSize()
+  "
+
+  [style.background-repeat]="
+    desktopBackgroundRepeat()
+  "
+
+  [style.background-position]="
+    'center'
+  "
+
+  (contextmenu)="
+    openDesktopContextMenu($event)
+  "
+
+  (pointermove)="
+    moveIcon($event)
+  "
+
+  (pointerup)="
+    finishIconDrag()
+  "
+
+  (pointercancel)="
+    finishIconDrag()
+  "
+>
+
+
+  <!-- =================================================
+       DESKTOP ICONS
+  ================================================== -->
+
+  @if (
+    iconsVisible()
+  ) {
+
+    @for (
+      icon of desktopService.icons();
+      track icon.id
+    ) {
+
+      <button
+        class="desktop-icon"
+
+        type="button"
+
+        [style.left.px]="
+          icon.x
+        "
+
+        [style.top.px]="
+          icon.y
+        "
+
+        (pointerdown)="
+          startIconDrag(
+            $event,
+            icon
+          )
+        "
+
+        (contextmenu)="
+          openDesktopContextMenu(
+            $event
+          )
+        "
+      >
+
+        <img
+          [src]="
+            icon.icon
+          "
+
+          alt=""
+
+          draggable="false"
+        />
+
+
+        @if (
+          icon.labelKey
+        ) {
+
+          <span dir="auto">
+
+            {{
+              icon.labelKey
+                | translate
+            }}
+
+          </span>
+
+        } @else {
+
+          <span dir="auto">
+
+            {{
+              icon.name
+            }}
+
+          </span>
+
+        }
+
+      </button>
+
+    }
+
+  }
+
+
+  <!-- =================================================
+       WINDOWS AREA
+  ================================================== -->
+
+  <div class="windows-area">
+  </div>
+
+
+  <!-- =================================================
+       COMMAND PROMPT
+  ================================================== -->
+
+  @if (
+    cmdOpen()
+  ) {
+
+    <div
+      class="
+        window
+        cmd-window
+      "
+
+      (click)="
+        $event.stopPropagation()
+      "
+
+      (contextmenu)="
+        $event.preventDefault();
+        $event.stopPropagation()
+      "
+    >
+
+      <div class="title-bar">
+
+
+        <div class="title-bar-text">
+
+          C:\WINDOWS\system32\cmd.exe
+
+        </div>
+
+
+        <div class="title-bar-controls">
+
+          <button
+            type="button"
+
+            aria-label="Minimize"
+          ></button>
+
+
+          <button
+            type="button"
+
+            aria-label="Maximize"
+          ></button>
+
+
+          <button
+            type="button"
+
+            aria-label="Close"
+
+            (click)="
+              closeCommandPrompt()
+            "
+          ></button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="
+          window-body
+          cmd-body
+        "
+      >
+
+        <div>
+
+          Microsoft Windows XP
+          [Version 5.1.2600]
+
+        </div>
+
+
+        <div>
+
+          (C) Copyright 1985-2001
+          Microsoft Corp.
+
+        </div>
+
+
+        <br />
+
+
+        <div>
+
+          C:\Documents and Settings\Wael&gt;
+
+          <span class="cmd-cursor">
+
+            _
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- =================================================
+       DISPLAY PROPERTIES
+  ================================================== -->
+
+  @if (
+    displayPropertiesOpen()
+  ) {
+
+    <app-display-properties
+
+      (closed)="
+        closeDisplayProperties()
+      "
+
+    />
+
+  }
+
+
+  <!-- =================================================
+       DESKTOP CONTEXT MENU
+  ================================================== -->
+
+  @if (
+    contextMenuOpen()
+  ) {
+
+    <div
+      class="desktop-context-menu"
+
+      [style.left.px]="
+        contextMenuX()
+      "
+
+      [style.top.px]="
+        contextMenuY()
+      "
+
+      (click)="
+        $event.stopPropagation()
+      "
+
+      (contextmenu)="
+        $event.preventDefault();
+        $event.stopPropagation()
+      "
+    >
+
+
+      <!-- REFRESH -->
+
+      <button
+        class="context-item"
+
+        type="button"
+
+        (mouseenter)="
+          clearSubmenu()
+        "
+
+        (click)="
+          refreshDesktop()
+        "
+      >
+
+        <span
+          class="
+            context-icon-slot
+            empty
+          "
+        ></span>
+
+
+        <span
+          class="context-text"
+
+          dir="auto"
+        >
+
+          {{
+            'SYSTEM.REFRESH'
+              | translate
+          }}
+
+        </span>
+
+      </button>
+
+
+      <!-- SORT BY -->
+
+      <div
+        class="context-submenu-wrapper"
+
+        (mouseenter)="
+          setSubmenu('sort')
+        "
+      >
+
+        <button
+          class="context-item"
+
+          type="button"
+        >
+
+          <span
+            class="
+              context-icon-slot
+              empty
+            "
+          ></span>
+
+
+          <span
+            class="context-text"
+
+            dir="auto"
+          >
+
+            {{
+              'SYSTEM.SORT_BY'
+                | translate
+            }}
+
+          </span>
+
+
+          <span class="submenu-arrow">
+
+            ▶
+
+          </span>
+
+        </button>
+
+
+        @if (
+          activeSubmenu() ===
+          'sort'
+        ) {
+
+          <div class="context-submenu">
+
+
+            <button
+              type="button"
+
+              (click)="
+                sortIconsByName()
+              "
+            >
+
+              <span
+                class="
+                  context-icon-slot
+                  empty
+                "
+              ></span>
+
+
+              <span dir="auto">
+
+                {{
+                  'SYSTEM.NAME'
+                    | translate
+                }}
+
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+
+              (click)="
+                sortIconsByType()
+              "
+            >
+
+              <span
+                class="
+                  context-icon-slot
+                  empty
+                "
+              ></span>
+
+
+              <span dir="auto">
+
+                {{
+                  'SYSTEM.TYPE'
+                    | translate
+                }}
+
+              </span>
+
+            </button>
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <div class="context-separator">
+      </div>
+
+
+      <!-- OPEN CMD -->
+
+      <button
+        class="context-item"
+
+        type="button"
+
+        (mouseenter)="
+          clearSubmenu()
+        "
+
+        (click)="
+          openCommandPrompt()
+        "
+      >
+
+        <span class="context-icon-slot">
+
+          <img
+            src="/assets/icons/system/cmd.png"
+
+            alt=""
+          />
+
+        </span>
+
+
+        <span
+          class="context-text"
+
+          dir="auto"
+        >
+
+          {{
+            'SYSTEM.OPEN_CMD'
+              | translate
+          }}
+
+        </span>
+
+      </button>
+
+
+      <div class="context-separator">
+      </div>
+
+
+      <!-- NEW -->
+
+      <div
+        class="context-submenu-wrapper"
+
+        (mouseenter)="
+          setSubmenu('new')
+        "
+      >
+
+        <button
+          class="context-item"
+
+          type="button"
+        >
+
+          <span
+            class="
+              context-icon-slot
+              empty
+            "
+          ></span>
+
+
+          <span
+            class="context-text"
+
+            dir="auto"
+          >
+
+            {{
+              'SYSTEM.NEW'
+                | translate
+            }}
+
+          </span>
+
+
+          <span class="submenu-arrow">
+
+            ▶
+
+          </span>
+
+        </button>
+
+
+        @if (
+          activeSubmenu() ===
+          'new'
+        ) {
+
+          <div class="context-submenu">
+
+
+            <!-- FOLDER -->
+
+            <button
+              type="button"
+
+              (click)="
+                createFolder()
+              "
+            >
+
+              <span class="context-icon-slot">
+
+                <img
+                  src="/assets/icons/desktop/folder.png"
+
+                  alt=""
+                />
+
+              </span>
+
+
+              <span dir="auto">
+
+                {{
+                  'SYSTEM.NEW_FOLDER'
+                    | translate
+                }}
+
+              </span>
+
+            </button>
+
+
+            <!-- TEXT DOCUMENT -->
+
+            <button
+              type="button"
+
+              (click)="
+                createTextDocument()
+              "
+            >
+
+              <span class="context-icon-slot">
+
+                <img
+                  src="/assets/icons/desktop/text-document.png"
+
+                  alt=""
+                />
+
+              </span>
+
+
+              <span dir="auto">
+
+                {{
+                  'SYSTEM.NEW_TEXT_DOCUMENT'
+                    | translate
+                }}
+
+              </span>
+
+            </button>
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <div class="context-separator">
+      </div>
+
+
+      <!-- FULLSCREEN -->
+
+      <button
+        class="context-item"
+
+        type="button"
+
+        (mouseenter)="
+          clearSubmenu()
+        "
+
+        (click)="
+          toggleFullScreen()
+        "
+      >
+
+        <span
+          class="
+            context-icon-slot
+            empty
+          "
+        ></span>
+
+
+        <span
+          class="context-text"
+
+          dir="auto"
+        >
+
+          {{
+            'SYSTEM.FULLSCREEN'
+              | translate
+          }}
+
+        </span>
+
+      </button>
+
+
+      <!-- PROPERTIES -->
+
+      <button
+        class="context-item"
+
+        type="button"
+
+        (mouseenter)="
+          clearSubmenu()
+        "
+
+        (click)="
+          openDisplayProperties()
+        "
+      >
+
+        <span
+          class="
+            context-icon-slot
+            empty
+          "
+        ></span>
+
+
+        <span
+          class="context-text"
+
+          dir="auto"
+        >
+
+          {{
+            'SYSTEM.PROPERTIES'
+              | translate
+          }}
+
+        </span>
+
+      </button>
+
+    </div>
+
+  }
+
+
+  <!-- =================================================
+       STARTUP / DEVELOPMENT NOTICE
+  ================================================== -->
+
+  @if (
+    startupNoticeOpen()
+  ) {
+
+    <div
+      class="startup-notice-overlay"
+
+      (contextmenu)="
+        $event.preventDefault();
+        $event.stopPropagation()
+      "
+    >
+
+      <div
+        class="
+          window
+          startup-notice
+        "
+
+        (click)="
+          $event.stopPropagation()
+        "
+      >
+
+
+        <!-- TITLE BAR -->
+
+        <div class="title-bar">
+
+
+          <div class="title-bar-text">
+
+            Portfolio Update
+
+          </div>
+
+
+          <div class="title-bar-controls">
+
+            <button
+              type="button"
+
+              aria-label="Close"
+
+              (click)="
+                closeStartupNotice()
+              "
+            ></button>
+
+          </div>
+
+        </div>
+
+
+        <!-- WINDOW BODY -->
+
+        <div
+          class="
+            window-body
+            startup-notice-body
+          "
+        >
+
+
+          <div class="startup-notice-content">
+
+
+            <!-- XP STYLE INFO ICON -->
+
+            <div
+              class="startup-notice-icon"
+
+              aria-hidden="true"
+            >
+
+              i
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="startup-notice-message">
+
+
+              <p class="startup-notice-heading">
+
+                Welcome!
+
+              </p>
+
+
+              <p>
+
+                This portfolio is still under active
+                development. Some applications and
+                features are still being added or refined.
+
+              </p>
+
+
+              <p>
+
+                You're viewing an early public version —
+                feel free to explore!
+
+              </p>
+
+
+            </div>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div class="startup-notice-actions">
+
+            <button
+              type="button"
+
+              autofocus
+
+              (click)="
+                closeStartupNotice()
+              "
+            >
+
+              OK
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- =================================================
+       TASKBAR
+
+       Taskbar remains its OWN component.
+       System tray remains inside Taskbar.
+  ================================================== -->
+
+  <app-taskbar />
+
+
+</div>

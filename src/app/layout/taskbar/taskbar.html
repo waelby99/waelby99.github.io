@@ -1,0 +1,60 @@
+<div
+  class="taskbar"
+
+  (click)="
+    $event.stopPropagation()
+  "
+
+  (contextmenu)="
+    $event.preventDefault();
+    $event.stopPropagation()
+  "
+>
+
+
+  <!-- =================================================
+       START BUTTON
+  ================================================== -->
+
+  <button
+    class="start-button"
+
+    type="button"
+  >
+
+    <img
+      src="/assets/logos/windows-xp-flag.png"
+
+      alt=""
+
+      class="start-logo"
+    />
+
+
+    <span dir="auto">
+
+      {{
+        'SYSTEM.START'
+          | translate
+      }}
+
+    </span>
+
+  </button>
+
+
+  <!-- =================================================
+       RUNNING APPLICATIONS
+  ================================================== -->
+
+  <div class="taskbar-applications">
+  </div>
+
+
+  <!-- =================================================
+       SYSTEM TRAY COMPONENT
+  ================================================== -->
+
+  <app-system-tray />
+
+</div>

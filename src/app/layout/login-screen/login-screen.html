@@ -1,0 +1,122 @@
+<div class="login-screen">
+
+  <header class="top-bar"></header>
+
+  <main class="login-content">
+
+    <!-- LEFT SIDE -->
+    <section class="welcome-section">
+
+      <div class="login-branding">
+
+        <img
+          src="/assets/logos/windows-xp-flag.png"
+          alt="Windows XP flag"
+          class="login-logo"
+        />
+
+        <div class="brand-name">
+          Wael Ben Youssef<span>XP</span>
+        </div>
+
+        <div class="brand-role">
+          Software Engineer
+        </div>
+
+      </div>
+
+      <p class="login-instruction">
+        {{ 'LOGIN.INSTRUCTION' | translate }}
+      </p>
+
+    </section>
+
+
+    <!-- CENTER DIVIDER -->
+    <div class="divider"></div>
+
+
+    <!-- RIGHT SIDE -->
+    <section class="users-section">
+
+      <button
+        class="user-account"
+        type="button"
+        (click)="login()"
+      >
+
+        <div class="avatar">
+          <img
+            src="/assets/images/profile.jpg"
+            alt="Wael Ben Youssef"
+          />
+        </div>
+
+        <div class="user-info">
+
+          <strong>
+            Wael Ben Youssef
+          </strong>
+
+          <span>
+            {{ 'LOGIN.SOFTWARE_ENGINEER' | translate }}
+          </span>
+
+        </div>
+
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM BAR -->
+  <footer class="bottom-bar">
+
+    <button
+      class="shutdown"
+      type="button"
+    >
+
+      <img
+        src="/assets/icons/shutdown.png"
+        alt="Turn off computer"
+        class="shutdown-icon"
+      />
+
+      <span>
+        {{ 'LOGIN.SHUTDOWN' | translate }}
+      </span>
+
+    </button>
+
+
+    <div class="languages">
+
+      <button
+        type="button"
+        (click)="languageService.setLanguage('en')"
+      >
+        EN
+      </button>
+
+      <button
+        type="button"
+        (click)="languageService.setLanguage('fr')"
+      >
+        FR
+      </button>
+
+      <button
+        type="button"
+        (click)="languageService.setLanguage('ar')"
+      >
+        AR
+      </button>
+
+    </div>
+
+  </footer>
+
+</div>

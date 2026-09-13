@@ -1,0 +1,38 @@
+@if (
+  systemStateService.state() ===
+  'boot'
+) {
+
+  <app-boot-screen />
+
+}
+
+
+@if (
+  systemStateService.state() ===
+  'login'
+) {
+
+  <app-login-screen />
+
+}
+
+
+@if (
+  systemStateService.state() ===
+  'welcome'
+) {
+
+  <app-welcome-screen />
+
+}
+
+
+@if (
+  systemStateService.state() ===
+  'desktop'
+) {
+
+  <app-desktop />
+
+}

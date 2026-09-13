@@ -1,0 +1,1154 @@
+:host {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+.desktop {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  direction: ltr;
+
+  background-color:
+    #3a6ea5;
+
+  background-position:
+    center;
+
+  background-repeat:
+    no-repeat;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  user-select:
+    none;
+}
+
+
+/* =========================================================
+   DESKTOP ICONS
+========================================================= */
+
+.desktop button.desktop-icon {
+  position: absolute;
+
+  width:
+    86px;
+
+  min-width:
+    86px !important;
+
+  min-height:
+    82px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    flex-start;
+
+  gap:
+    4px;
+
+  padding:
+    5px
+    3px !important;
+
+  margin:
+    0 !important;
+
+  border:
+    1px solid
+    transparent !important;
+
+  border-radius:
+    0 !important;
+
+  outline:
+    none !important;
+
+  background:
+    transparent !important;
+
+  background-image:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    white;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    12px;
+
+  font-weight:
+    normal;
+
+  text-align:
+    center;
+
+  text-shadow:
+    none;
+
+  cursor:
+    default;
+
+  touch-action:
+    none;
+
+  appearance:
+    none !important;
+
+  -webkit-appearance:
+    none !important;
+
+  z-index:
+    10;
+}
+
+
+/* =========================================================
+   DESKTOP ICON IMAGE
+========================================================= */
+
+.desktop button.desktop-icon img {
+  width:
+    46px;
+
+  height:
+    46px;
+
+  display:
+    block;
+
+  flex-shrink:
+    0;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
+/* =========================================================
+   DESKTOP ICON LABEL
+========================================================= */
+
+.desktop button.desktop-icon span {
+  max-width:
+    82px;
+
+  padding:
+    1px
+    3px;
+
+  color:
+    white;
+
+  line-height:
+    15px;
+
+  text-align:
+    center;
+
+  text-shadow:
+    1px
+    1px
+    2px
+    #000;
+
+  pointer-events:
+    none;
+
+  overflow-wrap:
+    anywhere;
+}
+
+
+/* =========================================================
+   ICON HOVER
+========================================================= */
+
+.desktop button.desktop-icon:hover {
+  border-color:
+    transparent !important;
+
+  outline:
+    none !important;
+
+  background:
+    rgb(49 106 197 / 22%)
+    !important;
+
+  background-image:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    white !important;
+}
+
+
+/* =========================================================
+   ICON ACTIVE
+========================================================= */
+
+.desktop button.desktop-icon:focus,
+.desktop button.desktop-icon:focus-visible,
+.desktop button.desktop-icon:active {
+  border:
+    1px solid
+    rgb(255 255 255 / 30%)
+    !important;
+
+  border-radius:
+    0 !important;
+
+  outline:
+    none !important;
+
+  background:
+    rgb(49 106 197 / 38%)
+    !important;
+
+  background-image:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    white !important;
+}
+
+
+/* =========================================================
+   REMOVE XP.CSS DESKTOP ICON EFFECTS
+========================================================= */
+
+.desktop button.desktop-icon::before,
+.desktop button.desktop-icon::after {
+  content:
+    none !important;
+
+  display:
+    none !important;
+}
+
+
+/* =========================================================
+   WINDOWS AREA
+========================================================= */
+
+.windows-area {
+  position:
+    absolute;
+
+  top:
+    0;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  bottom:
+    40px;
+
+  pointer-events:
+    none;
+
+  direction:
+    ltr;
+
+  z-index:
+    100;
+}
+
+
+/* =========================================================
+   DESKTOP CONTEXT MENU
+========================================================= */
+
+.desktop-context-menu {
+  position:
+    fixed;
+
+  width:
+    215px;
+
+  padding:
+    2px;
+
+  direction:
+    ltr;
+
+  background:
+    #f5f4ea;
+
+  border:
+    1px solid
+    #808080;
+
+  box-shadow:
+    2px
+    2px
+    4px
+    rgb(0 0 0 / 35%);
+
+  z-index:
+    30000;
+}
+
+
+/* =========================================================
+   CONTEXT MENU ITEMS
+========================================================= */
+
+.desktop-context-menu .context-item,
+.desktop-context-menu .context-submenu button {
+  width:
+    100%;
+
+  min-width:
+    0 !important;
+
+  height:
+    24px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  padding:
+    0
+    5px !important;
+
+  margin:
+    0 !important;
+
+  border:
+    none !important;
+
+  border-radius:
+    0 !important;
+
+  outline:
+    none !important;
+
+  background:
+    transparent !important;
+
+  background-image:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    #000;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    11px;
+
+  font-weight:
+    normal;
+
+  text-align:
+    left;
+
+  text-shadow:
+    none !important;
+
+  cursor:
+    default;
+
+  appearance:
+    none !important;
+
+  -webkit-appearance:
+    none !important;
+}
+
+
+/* =========================================================
+   CONTEXT MENU HOVER
+========================================================= */
+
+.desktop-context-menu .context-item:hover,
+.desktop-context-menu .context-item:focus,
+.desktop-context-menu .context-item:focus-visible,
+.desktop-context-menu .context-submenu button:hover,
+.desktop-context-menu .context-submenu button:focus,
+.desktop-context-menu .context-submenu button:focus-visible {
+  background:
+    #316ac5 !important;
+
+  background-image:
+    none !important;
+
+  color:
+    #fff !important;
+
+  border:
+    none !important;
+
+  outline:
+    none !important;
+
+  box-shadow:
+    none !important;
+}
+
+
+/* =========================================================
+   CONTEXT MENU ACTIVE
+========================================================= */
+
+.desktop-context-menu .context-item:active,
+.desktop-context-menu .context-submenu button:active {
+  background:
+    #316ac5 !important;
+
+  background-image:
+    none !important;
+
+  color:
+    #fff !important;
+
+  border:
+    none !important;
+
+  outline:
+    none !important;
+
+  box-shadow:
+    none !important;
+}
+
+
+/* =========================================================
+   CONTEXT MENU ICON
+========================================================= */
+
+.context-icon-slot {
+  width:
+    23px;
+
+  height:
+    20px;
+
+  flex:
+    0
+    0
+    23px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  margin-right:
+    3px;
+}
+
+
+.context-icon-slot img {
+  width:
+    16px;
+
+  height:
+    16px;
+
+  display:
+    block;
+
+  object-fit:
+    contain;
+}
+
+
+.context-icon-slot.empty {
+  visibility:
+    hidden;
+}
+
+
+/* =========================================================
+   CONTEXT TEXT
+========================================================= */
+
+.context-text {
+  flex:
+    1;
+
+  overflow:
+    hidden;
+
+  white-space:
+    nowrap;
+
+  text-overflow:
+    ellipsis;
+}
+
+
+/* =========================================================
+   CONTEXT SEPARATOR
+========================================================= */
+
+.context-separator {
+  height:
+    1px;
+
+  margin:
+    3px
+    2px
+    3px
+    27px;
+
+  background:
+    #aca899;
+}
+
+
+/* =========================================================
+   SUBMENU WRAPPER
+========================================================= */
+
+.context-submenu-wrapper {
+  position:
+    relative;
+}
+
+
+.context-submenu-wrapper > .context-item {
+  justify-content:
+    flex-start;
+}
+
+
+/* =========================================================
+   SUBMENU ARROW
+========================================================= */
+
+.submenu-arrow {
+  margin-left:
+    auto;
+
+  padding-left:
+    8px;
+
+  font-size:
+    8px;
+
+  line-height:
+    1;
+}
+
+
+/* =========================================================
+   CONTEXT SUBMENU
+========================================================= */
+
+.context-submenu {
+  position:
+    absolute;
+
+  top:
+    -3px;
+
+  left:
+    calc(100% - 2px);
+
+  min-width:
+    190px;
+
+  padding:
+    2px;
+
+  direction:
+    ltr;
+
+  background:
+    #f5f4ea;
+
+  border:
+    1px solid
+    #808080;
+
+  box-shadow:
+    2px
+    2px
+    4px
+    rgb(0 0 0 / 35%);
+
+  z-index:
+    31000;
+}
+
+
+/* =========================================================
+   CMD WINDOW
+========================================================= */
+
+.cmd-window {
+  position:
+    absolute;
+
+  top:
+    100px;
+
+  left:
+    50%;
+
+  width:
+    620px;
+
+  max-width:
+    calc(100vw - 40px);
+
+  transform:
+    translateX(-50%);
+
+  direction:
+    ltr;
+
+  z-index:
+    5000;
+}
+
+
+/* =========================================================
+   CMD BODY
+========================================================= */
+
+.cmd-body {
+  min-height:
+    300px;
+
+  margin:
+    0;
+
+  padding:
+    8px;
+
+  overflow:
+    auto;
+
+  background:
+    #000;
+
+  color:
+    #c0c0c0;
+
+  font-family:
+    'Courier New',
+    Consolas,
+    monospace;
+
+  font-size:
+    14px;
+
+  line-height:
+    18px;
+
+  user-select:
+    text;
+}
+
+
+/* =========================================================
+   CMD CURSOR
+========================================================= */
+
+.cmd-cursor {
+  animation:
+    cmd-blink
+    1s
+    steps(1)
+    infinite;
+}
+
+
+@keyframes cmd-blink {
+
+  50% {
+    opacity:
+      0;
+  }
+
+}
+
+
+/* =========================================================
+   STARTUP NOTICE OVERLAY
+========================================================= */
+
+.startup-notice-overlay {
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    15px;
+
+  box-sizing:
+    border-box;
+
+  /*
+   * Keep the XP desktop visible behind
+   * the message box.
+   */
+  background:
+    transparent;
+
+  pointer-events:
+    auto;
+
+  z-index:
+    40000;
+}
+
+
+/* =========================================================
+   STARTUP NOTICE WINDOW
+========================================================= */
+
+.startup-notice {
+  width:
+    430px;
+
+  max-width:
+    calc(100vw - 30px);
+
+  direction:
+    ltr;
+
+  pointer-events:
+    auto;
+
+  box-shadow:
+    4px
+    5px
+    12px
+    rgb(0 0 0 / 30%);
+}
+
+
+/* =========================================================
+   NOTICE TITLE
+========================================================= */
+
+.startup-notice
+> .title-bar
+.title-bar-text {
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   NOTICE BODY
+========================================================= */
+
+.startup-notice-body {
+  margin:
+    0;
+
+  padding:
+    17px
+    15px
+    12px;
+
+  background:
+    #ece9d8;
+}
+
+
+/* =========================================================
+   NOTICE CONTENT
+========================================================= */
+
+.startup-notice-content {
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    16px;
+}
+
+
+/* =========================================================
+   XP STYLE INFO ICON
+========================================================= */
+
+.startup-notice-icon {
+  width:
+    32px;
+
+  height:
+    32px;
+
+  flex:
+    0
+    0
+    32px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  box-sizing:
+    border-box;
+
+  margin-top:
+    2px;
+
+  border:
+    2px solid
+    #fff;
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #73b7ff 0%,
+      #2878d7 48%,
+      #07469f 100%
+    );
+
+  box-shadow:
+    0
+    0
+    0
+    1px
+    #0d4a99,
+
+    inset
+    1px
+    1px
+    1px
+    rgb(255 255 255 / 70%);
+
+  color:
+    #fff;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    25px;
+
+  font-weight:
+    700;
+
+  font-style:
+    italic;
+
+  line-height:
+    1;
+
+  text-shadow:
+    1px
+    1px
+    1px
+    rgb(0 0 0 / 25%);
+
+  user-select:
+    none;
+}
+
+
+/* =========================================================
+   NOTICE MESSAGE
+========================================================= */
+
+.startup-notice-message {
+  flex:
+    1;
+
+  min-width:
+    0;
+
+  color:
+    #000;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    11px;
+
+  line-height:
+    17px;
+
+  user-select:
+    text;
+}
+
+
+.startup-notice-message p {
+  margin:
+    0
+    0
+    9px;
+}
+
+
+.startup-notice-message p:last-child {
+  margin-bottom:
+    0;
+}
+
+
+.startup-notice-heading {
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   NOTICE ACTIONS
+========================================================= */
+
+.startup-notice-actions {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  margin-top:
+    18px;
+}
+
+
+/* =========================================================
+   NOTICE OK BUTTON
+========================================================= */
+
+.startup-notice-actions button {
+  min-width:
+    78px;
+
+  height:
+    23px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (
+  max-width:
+  700px
+) {
+
+  .desktop button.desktop-icon {
+    width:
+      74px;
+
+    min-width:
+      74px !important;
+
+    min-height:
+      76px;
+  }
+
+
+  .desktop button.desktop-icon img {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+
+  .desktop button.desktop-icon span {
+    max-width:
+      70px;
+  }
+
+
+  .desktop-context-menu {
+    width:
+      205px;
+  }
+
+
+  .context-submenu {
+    min-width:
+      175px;
+  }
+
+
+  .cmd-window {
+    width:
+      calc(100vw - 20px);
+
+    top:
+      60px;
+  }
+
+
+  .cmd-body {
+    min-height:
+      240px;
+
+    font-size:
+      12px;
+  }
+
+
+  .startup-notice {
+    width:
+      400px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width:
+  480px
+) {
+
+  .startup-notice-overlay {
+    padding:
+      10px;
+  }
+
+
+  .startup-notice {
+    width:
+      calc(100vw - 20px);
+
+    max-width:
+      none;
+  }
+
+
+  .startup-notice-body {
+    padding:
+      14px
+      12px
+      10px;
+  }
+
+
+  .startup-notice-content {
+    gap:
+      12px;
+  }
+
+
+  .startup-notice-message {
+    font-size:
+      11px;
+
+    line-height:
+      16px;
+  }
+
+
+  .startup-notice-icon {
+    width:
+      28px;
+
+    height:
+      28px;
+
+    flex-basis:
+      28px;
+
+    font-size:
+      21px;
+  }
+
+}

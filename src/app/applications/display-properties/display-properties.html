@@ -1,0 +1,380 @@
+<div
+  class="window display-properties"
+
+  (click)="
+    $event.stopPropagation()
+  "
+
+  (contextmenu)="
+    $event.preventDefault();
+    $event.stopPropagation()
+  "
+>
+
+  <!-- ===========================================
+       TITLE
+  ============================================ -->
+
+  <div class="title-bar">
+
+    <div class="title-bar-text">
+
+      {{
+        'SYSTEM.DISPLAY_PROPERTIES'
+          | translate
+      }}
+
+    </div>
+
+
+    <div class="title-bar-controls">
+
+      <button
+        type="button"
+        aria-label="Help"
+      ></button>
+
+
+      <button
+        type="button"
+        aria-label="Close"
+
+        (click)="cancel()"
+      ></button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===========================================
+       BODY
+  ============================================ -->
+
+  <div
+    class="
+      window-body
+      properties-body
+    "
+  >
+
+
+    <!-- =========================================
+         TABS
+    ========================================== -->
+
+    <div class="properties-tabs">
+
+
+      <button
+        class="property-tab"
+        type="button"
+      >
+
+        {{
+          'SYSTEM.THEMES'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        class="
+          property-tab
+          active
+        "
+        type="button"
+      >
+
+        {{
+          'SYSTEM.DESKTOP'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        class="property-tab"
+        type="button"
+      >
+
+        {{
+          'SYSTEM.SCREEN_SAVER'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        class="property-tab"
+        type="button"
+      >
+
+        {{
+          'SYSTEM.APPEARANCE'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        class="property-tab"
+        type="button"
+      >
+
+        {{
+          'SYSTEM.SETTINGS'
+            | translate
+        }}
+
+      </button>
+
+    </div>
+
+
+    <!-- =========================================
+         DESKTOP TAB CONTENT
+    ========================================== -->
+
+    <div class="desktop-properties-panel">
+
+
+      <!-- =====================================
+           MONITOR
+      ====================================== -->
+
+      <div class="monitor-preview">
+
+
+        <div class="monitor-frame">
+
+          <div
+            class="monitor-screen"
+
+            [style.background-image]="
+              'url(' +
+              selectedWallpaper() +
+              ')'
+            "
+
+            [style.background-size]="
+              previewSize()
+            "
+
+            [style.background-repeat]="
+              previewRepeat()
+            "
+
+            [style.background-position]="
+              'center'
+            "
+          ></div>
+
+        </div>
+
+
+        <div class="monitor-neck">
+        </div>
+
+
+        <div class="monitor-base">
+        </div>
+
+      </div>
+
+
+      <!-- =====================================
+           WALLPAPER OPTIONS
+      ====================================== -->
+
+      <div class="wallpaper-controls">
+
+
+        <div class="background-area">
+
+          <label class="section-label">
+
+            {{
+              'SYSTEM.BACKGROUND'
+                | translate
+            }}:
+
+          </label>
+
+
+          <div class="wallpaper-list">
+
+            @for (
+              wallpaper of wallpapers;
+              track wallpaper.id
+            ) {
+
+              <button
+                type="button"
+
+                [class.selected]="
+                  selectedWallpaper()
+                  ===
+                  wallpaper.path
+                "
+
+                (click)="
+                  selectWallpaper(
+                    wallpaper.path
+                  )
+                "
+              >
+
+                <img
+                  [src]="
+                    wallpaper.path
+                  "
+                  alt=""
+                />
+
+                <span>
+                  {{ wallpaper.name }}
+                </span>
+
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================
+             POSITION
+        ================================== -->
+
+        <div class="position-area">
+
+          <label
+            class="section-label"
+            for="wallpaper-position"
+          >
+
+            {{
+              'SYSTEM.POSITION'
+                | translate
+            }}:
+
+          </label>
+
+
+          <select
+            id="wallpaper-position"
+
+            [value]="
+              selectedPosition()
+            "
+
+            (change)="
+              selectPosition(
+                $event
+              )
+            "
+          >
+
+            <option
+              value="center"
+            >
+
+              {{
+                'SYSTEM.CENTER'
+                  | translate
+              }}
+
+            </option>
+
+
+            <option
+              value="tile"
+            >
+
+              {{
+                'SYSTEM.TILE'
+                  | translate
+              }}
+
+            </option>
+
+
+            <option
+              value="stretch"
+            >
+
+              {{
+                'SYSTEM.STRETCH'
+                  | translate
+              }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         BUTTONS
+    ========================================== -->
+
+    <div class="properties-actions">
+
+      <button
+        type="button"
+
+        (click)="ok()"
+      >
+
+        {{
+          'SYSTEM.OK'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        type="button"
+
+        (click)="cancel()"
+      >
+
+        {{
+          'SYSTEM.CANCEL'
+            | translate
+        }}
+
+      </button>
+
+
+      <button
+        type="button"
+
+        (click)="apply()"
+      >
+
+        {{
+          'SYSTEM.APPLY'
+            | translate
+        }}
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

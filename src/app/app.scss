@@ -1,0 +1,31 @@
+:host {
+  display: block;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+.temporary-login,
+.temporary-desktop {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 40px;
+  font-family: Tahoma, sans-serif;
+}
+
+.temporary-login {
+  background: #5a7edc;
+  color: white;
+}
+
+.temporary-desktop {
+  background: #3a8dcc;
+  color: white;
+}

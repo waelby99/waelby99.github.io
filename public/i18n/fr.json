@@ -1,0 +1,56 @@
+{
+  "SYSTEM": {
+    "START": "démarrer",
+    "WELCOME": "Bienvenue",
+
+    "MY_COMPUTER": "Poste de travail",
+    "MY_DOCUMENTS": "Mes documents",
+    "PROJECTS": "Mes projets",
+    "CONTACT": "Me contacter",
+
+    "INTERNET_EXPLORER": "Internet Explorer",
+    "RECYCLE_BIN": "Corbeille",
+
+    "REFRESH": "Actualiser",
+
+    "SORT_BY": "Trier par",
+    "NAME": "Nom",
+    "TYPE": "Type",
+
+    "OPEN_CMD": "Ouvrir l'invite de commandes",
+
+    "NEW": "Nouveau",
+    "NEW_FOLDER": "Dossier",
+    "NEW_TEXT_DOCUMENT": "Document texte",
+
+    "FULLSCREEN": "Plein écran",
+
+    "PROPERTIES": "Propriétés",
+
+    "DISPLAY_PROPERTIES": "Propriétés d'affichage",
+
+    "THEMES": "Thèmes",
+    "DESKTOP": "Bureau",
+    "SCREEN_SAVER": "Écran de veille",
+    "APPEARANCE": "Apparence",
+    "SETTINGS": "Paramètres",
+
+    "BACKGROUND": "Arrière-plan",
+    "POSITION": "Position",
+
+    "CENTER": "Centrer",
+    "TILE": "Mosaïque",
+    "STRETCH": "Étirer",
+
+    "OK": "OK",
+    "CANCEL": "Annuler",
+    "APPLY": "Appliquer"
+  },
+
+   "LOGIN": {
+    "WELCOME": "Bienvenue",
+    "INSTRUCTION": "Pour commencer, cliquez sur votre nom",
+    "SOFTWARE_ENGINEER": "Ingénieur logiciel",
+    "SHUTDOWN": "Arrêter l'ordinateur"
+  }
+}

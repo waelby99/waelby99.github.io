@@ -1,0 +1,56 @@
+{
+    "SYSTEM": {
+    "START": "ابدأ",
+    "WELCOME": "مرحباً",
+
+    "MY_COMPUTER": "جهاز الكمبيوتر",
+    "MY_DOCUMENTS": "المستندات",
+    "PROJECTS": "مشاريعي",
+    "CONTACT": "اتصل بي",
+
+    "INTERNET_EXPLORER": "إنترنت إكسبلورر",
+    "RECYCLE_BIN": "سلة المحذوفات",
+
+    "REFRESH": "تحديث",
+
+    "SORT_BY": "ترتيب حسب",
+    "NAME": "الاسم",
+    "TYPE": "النوع",
+
+    "OPEN_CMD": "فتح موجه الأوامر",
+
+    "NEW": "جديد",
+    "NEW_FOLDER": "مجلد",
+    "NEW_TEXT_DOCUMENT": "مستند نصي",
+
+    "FULLSCREEN": "ملء الشاشة",
+
+    "PROPERTIES": "خصائص",
+
+    "DISPLAY_PROPERTIES": "خصائص العرض",
+
+    "THEMES": "السمات",
+    "DESKTOP": "سطح المكتب",
+    "SCREEN_SAVER": "شاشة التوقف",
+    "APPEARANCE": "المظهر",
+    "SETTINGS": "الإعدادات",
+
+    "BACKGROUND": "الخلفية",
+    "POSITION": "الموضع",
+
+    "CENTER": "توسيط",
+    "TILE": "تكرار",
+    "STRETCH": "تمديد",
+
+    "OK": "موافق",
+    "CANCEL": "إلغاء",
+    "APPLY": "تطبيق"
+  },
+    
+    "LOGIN": {
+     "WELCOME": "مرحباً",
+     "INSTRUCTION": "لبدء، انقر على اسم المستخدم الخاص بك",
+     "SOFTWARE_ENGINEER": "مهندس برمجيات",
+     "SHUTDOWN": "إيقاف تشغيل الكمبيوتر"
+      }
+}
