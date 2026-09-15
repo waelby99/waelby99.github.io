@@ -129,6 +129,7 @@ export class BootScreen
       '/assets/icons/system/volume.png',
       '/assets/icons/system/security.png',
       '/assets/icons/system/usb.png',
+      '/assets/icons/system/info.png',
 
 
       /*

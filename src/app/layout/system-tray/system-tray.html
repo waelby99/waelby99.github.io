@@ -1,160 +1,111 @@
 <div
   class="system-tray"
-
-  (click)="
-    $event.stopPropagation()
-  "
-
-  (contextmenu)="
-    $event.preventDefault();
-    $event.stopPropagation()
-  "
+  (click)="$event.stopPropagation()"
+  (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
 >
 
+  <!-- XP TRAY TOGGLE -->
 
-  <!-- =================================================
-       TRAY ICONS
-  ================================================== -->
+  <button
+    class="tray-toggle"
+    type="button"
+    [attr.title]="
+      (
+        trayExpanded()
+          ? 'SYSTEM_TRAY.HIDE_INACTIVE'
+          : 'SYSTEM_TRAY.SHOW_HIDDEN'
+      ) | translate
+    "
+    [attr.aria-label]="
+      (
+        trayExpanded()
+          ? 'SYSTEM_TRAY.HIDE_INACTIVE'
+          : 'SYSTEM_TRAY.SHOW_HIDDEN'
+      ) | translate
+    "
+    (click)="toggleTray($event)"
+  >
+    <span class="tray-toggle-arrow" aria-hidden="true">
+      {{ trayExpanded() ? '›' : '‹' }}
+    </span>
+  </button>
+
+
+  <!-- TRAY ICONS -->
 
   <div class="tray-icons">
 
-    @for (
-      icon of trayIcons;
-      track icon.id
-    ) {
+    @for (icon of trayIcons; track icon.id) {
 
-      <button
-        class="tray-button"
+      @if (icon.alwaysVisible || trayExpanded()) {
 
-        type="button"
+        <button
+          class="tray-button"
+          type="button"
+          [attr.data-tray-icon]="icon.id"
+          [attr.title]="icon.labelKey | translate"
+          [attr.aria-label]="icon.labelKey | translate"
+          (click)="clickTrayIcon(icon, $event)"
+        >
+          <img
+            class="tray-icon"
+            [src]="icon.icon"
+            alt=""
+            draggable="false"
+          />
+        </button>
 
-        [attr.aria-label]="
-          icon.label
-        "
-
-        [attr.title]="
-          icon.label
-        "
-
-        (click)="
-          clickTrayIcon(
-            icon,
-            $event
-          )
-        "
-      >
-
-        <img
-          class="tray-icon"
-
-          [src]="
-            icon.icon
-          "
-
-          alt=""
-
-          draggable="false"
-        />
-
-      </button>
+      }
 
     }
 
   </div>
 
 
-  <!-- =================================================
-       LANGUAGE
-  ================================================== -->
+  <!-- LANGUAGE -->
 
   <div class="language-selector">
 
     <button
       class="language-trigger"
-
       type="button"
-
-      (click)="
-        toggleLanguageMenu(
-          $event
-        )
-      "
+      [attr.title]="'SYSTEM_TRAY.LANGUAGE' | translate"
+      [attr.aria-label]="'SYSTEM_TRAY.LANGUAGE' | translate"
+      (click)="toggleLanguageMenu($event)"
     >
-
-      {{
-        languageService
-          .currentLanguage()
-          .toUpperCase()
-      }}
-
+      {{ languageService.currentLanguage().toUpperCase() }}
     </button>
 
 
-    @if (
-      languageMenuOpen()
-    ) {
+    @if (languageMenuOpen()) {
 
       <div
         class="language-menu"
-
-        (click)="
-          $event.stopPropagation()
-        "
+        (click)="$event.stopPropagation()"
       >
-
         <button
           type="button"
-
           dir="ltr"
-
-          (click)="
-            selectLanguage(
-              'en',
-              $event
-            )
-          "
+          (click)="selectLanguage('en', $event)"
         >
-
           English
-
         </button>
-
 
         <button
           type="button"
-
           dir="ltr"
-
-          (click)="
-            selectLanguage(
-              'fr',
-              $event
-            )
-          "
+          (click)="selectLanguage('fr', $event)"
         >
-
           Français
-
         </button>
-
 
         <button
           type="button"
-
           dir="rtl"
-
-          (click)="
-            selectLanguage(
-              'ar',
-              $event
-            )
-          "
+          (click)="selectLanguage('ar', $event)"
         >
-
           العربية
-
         </button>
-
       </div>
 
     }
@@ -162,14 +113,109 @@
   </div>
 
 
-  <!-- =================================================
-       CLOCK
-  ================================================== -->
+  <!-- CLOCK -->
 
-  <span class="clock">
-
+  <span
+    class="clock"
+    [attr.title]="'SYSTEM_TRAY.CLOCK' | translate"
+  >
     {{ currentTime() }}
-
   </span>
+
+
+  <!-- XP INFO BALLOON -->
+
+  @if (notificationOpen()) {
+
+    <div
+      class="xp-notification"
+      [class.fading]="notificationFading()"
+      [style.left.px]="notificationLeft()"
+      [attr.dir]="
+        languageService.currentLanguage() === 'ar'
+          ? 'rtl'
+          : 'ltr'
+      "
+      (click)="$event.stopPropagation()"
+    >
+
+      <div class="notification-header">
+
+        <img
+          class="notification-info-icon"
+          src="/assets/icons/system/info.png"
+          alt=""
+          draggable="false"
+        />
+
+        <strong class="notification-title">
+          {{
+            'SYSTEM_TRAY.NOTIFICATION.TITLE'
+              | translate
+          }}
+        </strong>
+
+        <button
+          class="notification-close"
+          type="button"
+          [attr.title]="
+            'SYSTEM_TRAY.NOTIFICATION.CLOSE'
+              | translate
+          "
+          [attr.aria-label]="
+            'SYSTEM_TRAY.NOTIFICATION.CLOSE'
+              | translate
+          "
+          (click)="closeNotification($event)"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="notification-body">
+
+        <p>
+          {{
+            'SYSTEM_TRAY.NOTIFICATION.DESCRIPTION'
+              | translate
+          }}
+        </p>
+
+        <p>
+          {{
+            'SYSTEM_TRAY.NOTIFICATION.DOUBLE_CLICK'
+              | translate
+          }}
+        </p>
+
+        <p>
+          {{
+            'SYSTEM_TRAY.NOTIFICATION.START_MENU'
+              | translate
+          }}
+        </p>
+
+      </div>
+
+
+      <div class="notification-tip">
+        {{
+          'SYSTEM_TRAY.NOTIFICATION.TIP'
+            | translate
+        }}
+      </div>
+
+
+      <span
+        class="notification-pointer"
+        [style.left.px]="notificationPointerLeft()"
+        aria-hidden="true"
+      ></span>
+
+    </div>
+
+  }
 
 </div>
