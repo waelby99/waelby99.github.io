@@ -1,56 +1,61 @@
 {
-    "SYSTEM": {
+  "SYSTEM": {
     "START": "start",
     "WELCOME": "Welcome",
-
     "MY_COMPUTER": "My Computer",
     "MY_DOCUMENTS": "My Documents",
     "PROJECTS": "My Projects",
     "CONTACT": "Contact Me",
-
     "INTERNET_EXPLORER": "Internet Explorer",
     "RECYCLE_BIN": "Recycle Bin",
-
     "REFRESH": "Refresh",
-
     "SORT_BY": "Sort by",
     "NAME": "Name",
     "TYPE": "Type",
-
     "OPEN_CMD": "Open Command Prompt",
-
     "NEW": "New",
     "NEW_FOLDER": "Folder",
     "NEW_TEXT_DOCUMENT": "Text Document",
-
     "FULLSCREEN": "Full Screen",
-
     "PROPERTIES": "Properties",
-
     "DISPLAY_PROPERTIES": "Display Properties",
-
     "THEMES": "Themes",
     "DESKTOP": "Desktop",
     "SCREEN_SAVER": "Screen Saver",
     "APPEARANCE": "Appearance",
     "SETTINGS": "Settings",
-
     "BACKGROUND": "Background",
     "POSITION": "Position",
-
     "CENTER": "Center",
     "TILE": "Tile",
     "STRETCH": "Stretch",
-
     "OK": "OK",
     "CANCEL": "Cancel",
     "APPLY": "Apply"
   },
-  
-   "LOGIN": {
+  "LOGIN": {
     "WELCOME": "Welcome",
     "INSTRUCTION": "To begin, click your user name",
     "SOFTWARE_ENGINEER": "Software Engineer",
     "SHUTDOWN": "Turn off computer"
+  },
+  "SYSTEM_TRAY": {
+    "NETWORK": "Network Connection",
+    "VOLUME": "Volume",
+    "INFO": "Portfolio Information",
+    "SECURITY": "Windows Security Center",
+    "USB": "Safely Remove Hardware",
+    "SHOW_HIDDEN": "Show hidden icons",
+    "HIDE_INACTIVE": "Hide inactive icons",
+    "LANGUAGE": "Language",
+    "CLOCK": "Clock",
+    "NOTIFICATION": {
+      "TITLE": "Welcome to Wael XP",
+      "DESCRIPTION": "My portfolio, built as a Windows XP desktop.",
+      "DOUBLE_CLICK": "- Double-click an icon to get started",
+      "START_MENU": "- Or open a program from the Start menu",
+      "TIP": "Tip: Right-click for context menus.",
+      "CLOSE": "Close"
+    }
   }
 }

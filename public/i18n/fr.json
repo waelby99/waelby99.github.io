@@ -2,55 +2,60 @@
   "SYSTEM": {
     "START": "démarrer",
     "WELCOME": "Bienvenue",
-
     "MY_COMPUTER": "Poste de travail",
     "MY_DOCUMENTS": "Mes documents",
     "PROJECTS": "Mes projets",
     "CONTACT": "Me contacter",
-
     "INTERNET_EXPLORER": "Internet Explorer",
     "RECYCLE_BIN": "Corbeille",
-
     "REFRESH": "Actualiser",
-
     "SORT_BY": "Trier par",
     "NAME": "Nom",
     "TYPE": "Type",
-
     "OPEN_CMD": "Ouvrir l'invite de commandes",
-
     "NEW": "Nouveau",
     "NEW_FOLDER": "Dossier",
     "NEW_TEXT_DOCUMENT": "Document texte",
-
     "FULLSCREEN": "Plein écran",
-
     "PROPERTIES": "Propriétés",
-
     "DISPLAY_PROPERTIES": "Propriétés d'affichage",
-
     "THEMES": "Thèmes",
     "DESKTOP": "Bureau",
     "SCREEN_SAVER": "Écran de veille",
     "APPEARANCE": "Apparence",
     "SETTINGS": "Paramètres",
-
     "BACKGROUND": "Arrière-plan",
     "POSITION": "Position",
-
     "CENTER": "Centrer",
     "TILE": "Mosaïque",
     "STRETCH": "Étirer",
-
     "OK": "OK",
     "CANCEL": "Annuler",
     "APPLY": "Appliquer"
   },
-
-   "LOGIN": {
+  "LOGIN": {
     "WELCOME": "Bienvenue",
     "INSTRUCTION": "Pour commencer, cliquez sur votre nom",
     "SOFTWARE_ENGINEER": "Ingénieur logiciel",
     "SHUTDOWN": "Arrêter l'ordinateur"
+  },
+  "SYSTEM_TRAY": {
+    "NETWORK": "Connexion réseau",
+    "VOLUME": "Volume",
+    "INFO": "Informations du portfolio",
+    "SECURITY": "Centre de sécurité Windows",
+    "USB": "Retirer le périphérique en toute sécurité",
+    "SHOW_HIDDEN": "Afficher les icônes masquées",
+    "HIDE_INACTIVE": "Masquer les icônes inactives",
+    "LANGUAGE": "Langue",
+    "CLOCK": "Horloge",
+    "NOTIFICATION": {
+      "TITLE": "Bienvenue sur Wael XP",
+      "DESCRIPTION": "Mon portfolio, conçu comme un bureau Windows XP.",
+      "DOUBLE_CLICK": "- Double-cliquez sur une icône pour commencer",
+      "START_MENU": "- Ou ouvrez un programme depuis le menu Démarrer",
+      "TIP": "Astuce : faites un clic droit pour afficher les menus contextuels.",
+      "CLOSE": "Fermer"
+    }
   }
 }
