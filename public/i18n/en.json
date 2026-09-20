@@ -57,5 +57,17 @@
       "TIP": "Tip: Right-click for context menus.",
       "CLOSE": "Close"
     }
-  }
+  },
+  "EDUCATION": {
+  "TITLE": "Education",
+  "TASKS": "Education Tasks",
+  "VIEW_EDUCATION": "View my education",
+  "OTHER_PLACES": "Other Places",
+  "DESKTOP": "Desktop",
+  "MY_COMPUTER": "My Computer",
+  "DETAILS": "Details",
+  "SELECT_ITEM": "Select an item to view its details.",
+  "LOADING": "Loading education...",
+  "EMPTY": "No education entries available."
+}
 }

@@ -1,0 +1,178 @@
+<app-xp-explorer
+  [title]="'EDUCATION.TITLE' | translate"
+  [path]="'EDUCATION.TITLE' | translate"
+  icon="/assets/icons/desktop/education.png"
+  (closed)="close()"
+>
+  <div
+    explorer-sidebar
+    class="education-sidebar"
+  >
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>
+          {{ 'EDUCATION.TASKS' | translate }}
+        </span>
+
+        <span class="collapse-button">
+          ⌃
+        </span>
+      </div>
+
+      <div class="task-box-content">
+        <div class="task-link">
+          <img
+            src="/assets/icons/desktop/education.png"
+            alt=""
+            draggable="false"
+          />
+
+          <span>
+            {{ 'EDUCATION.VIEW_EDUCATION' | translate }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>
+          {{ 'EDUCATION.OTHER_PLACES' | translate }}
+        </span>
+
+        <span class="collapse-button">
+          ⌃
+        </span>
+      </div>
+
+      <div class="task-box-content">
+        <div class="task-link">
+          <span class="task-emoji">🖥️</span>
+
+          <span>
+            {{ 'EDUCATION.DESKTOP' | translate }}
+          </span>
+        </div>
+
+        <div class="task-link">
+          <span class="task-emoji">💻</span>
+
+          <span>
+            {{ 'EDUCATION.MY_COMPUTER' | translate }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>
+          {{ 'EDUCATION.DETAILS' | translate }}
+        </span>
+
+        <span class="collapse-button">
+          ⌃
+        </span>
+      </div>
+
+      @if (selectedEducation(); as selected) {
+        <div class="education-details">
+          <strong>
+            {{ text(selected.institution) }}
+          </strong>
+
+          <span>
+            {{ text(selected.degree) }}
+          </span>
+
+          <span>
+            {{ text(selected.field) }}
+          </span>
+
+          <span>
+            {{ selected.period }}
+          </span>
+
+          <span>
+            {{ text(selected.location) }}
+          </span>
+
+          <span>
+            Average: {{ selected.average }}
+          </span>
+
+          <span>
+            Estimated GPA: {{ selected.estimatedGpa }}
+          </span>
+        </div>
+      } @else {
+        <div class="education-details empty-details">
+          {{ 'EDUCATION.SELECT_ITEM' | translate }}
+        </div>
+      }
+    </section>
+  </div>
+
+  <div
+    explorer-content
+    class="education-content"
+  >
+    @if (loading()) {
+      <div class="education-message">
+        {{ 'EDUCATION.LOADING' | translate }}
+      </div>
+    } @else if (education().length === 0) {
+      <div class="education-message">
+        {{ 'EDUCATION.EMPTY' | translate }}
+      </div>
+    } @else {
+      @for (entry of education(); track entry.id) {
+        <button
+          type="button"
+          class="education-item"
+          [class.selected]="selectedEducation()?.id === entry.id"
+          (click)="selectEducation(entry)"
+        >
+          <img
+            class="education-icon"
+            [src]="entry.icon || '/assets/icons/desktop/education.png'"
+            alt=""
+            draggable="false"
+          />
+
+          <div class="education-text">
+            <strong class="education-institution">
+              {{ text(entry.institution) }}
+            </strong>
+
+            <span class="education-degree">
+              {{ text(entry.degree) }}
+            </span>
+
+            <span class="education-period">
+              {{ entry.period }}
+            </span>
+
+            <span class="education-location">
+              {{ text(entry.location) }}
+            </span>
+
+            <p class="education-description">
+              {{ text(entry.description) }}
+            </p>
+
+            @if (selectedEducation()?.id === entry.id) {
+              <div class="coursework">
+                @for (course of list(entry.coursework); track course) {
+                  <span class="course">
+                    {{ course }}
+                  </span>
+                }
+              </div>
+            }
+          </div>
+        </button>
+      }
+    }
+  </div>
+</app-xp-explorer>

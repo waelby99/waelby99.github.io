@@ -1,0 +1,118 @@
+<div
+  class="explorer-window"
+  (click)="$event.stopPropagation()"
+  (contextmenu)="$event.stopPropagation()"
+>
+  <header class="title-bar">
+    <div class="title-left">
+      <img
+        class="title-icon"
+        [src]="icon"
+        alt=""
+        draggable="false"
+      />
+
+      <span>{{ title }}</span>
+    </div>
+
+    <div class="window-controls">
+      <button
+        type="button"
+        class="window-button minimize"
+        aria-label="Minimize"
+      >
+        _
+      </button>
+
+      <button
+        type="button"
+        class="window-button maximize"
+        aria-label="Maximize"
+      >
+        □
+      </button>
+
+      <button
+        type="button"
+        class="window-button close"
+        aria-label="Close"
+        (click)="close()"
+      >
+        ×
+      </button>
+    </div>
+  </header>
+
+  <nav class="menu-bar">
+    <button type="button">File</button>
+    <button type="button">Edit</button>
+    <button type="button">View</button>
+    <button type="button">Favorites</button>
+    <button type="button">Tools</button>
+    <button type="button">Help</button>
+  </nav>
+
+  <div class="toolbar">
+    <button type="button" class="toolbar-button">
+      <span class="back-button">←</span>
+      <span>Back</span>
+      <span class="toolbar-arrow">▼</span>
+    </button>
+
+    <button
+      type="button"
+      class="toolbar-button disabled"
+      disabled
+    >
+      <span class="forward-button">→</span>
+    </button>
+
+    <div class="toolbar-separator"></div>
+
+    <button type="button" class="toolbar-button">
+      <span class="search-icon">🔍</span>
+      <span>Search</span>
+    </button>
+
+    <button type="button" class="toolbar-button">
+      <span class="folder-icon">📁</span>
+      <span>Folders</span>
+    </button>
+
+    <div class="toolbar-separator"></div>
+
+    <button
+      type="button"
+      class="toolbar-button views-button"
+    >
+      <span>▦</span>
+      <span class="toolbar-arrow">▼</span>
+    </button>
+  </div>
+
+  <div class="address-bar">
+    <span class="address-label">
+      Address
+    </span>
+
+    <div class="address-field">
+      <img
+        [src]="icon"
+        alt=""
+        draggable="false"
+      />
+
+      <span>{{ path }}</span>
+    </div>
+  </div>
+
+  <div class="explorer-body">
+    <aside class="explorer-sidebar">
+      <ng-content select="[explorer-sidebar]"></ng-content>
+    </aside>
+
+    <main class="explorer-content">
+      <ng-content select="[explorer-content]"></ng-content>
+    </main>
+  </div>
+</div>
