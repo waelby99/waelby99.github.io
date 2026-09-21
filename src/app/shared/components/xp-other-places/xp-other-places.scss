@@ -1,0 +1,40 @@
+.places-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+button.place-link {
+  width: 100%;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  padding: 3px 4px !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #174ea0 !important;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+button.place-link:hover {
+  text-decoration: underline;
+}
+
+.place-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+  pointer-events: none;
+}

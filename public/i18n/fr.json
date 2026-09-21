@@ -31,7 +31,12 @@
     "STRETCH": "Étirer",
     "OK": "OK",
     "CANCEL": "Annuler",
-    "APPLY": "Appliquer"
+    "APPLY": "Appliquer",
+    "EDUCATION": "Formation",
+    "CERTIFICATIONS": "Certifications",
+    "PROFESSIONAL_EXPERIENCE": "Expériences professionnelles",
+    "EXPAND": "Développer",
+    "COLLAPSE": "Réduire"
   },
   "LOGIN": {
     "WELCOME": "Bienvenue",
@@ -59,15 +64,17 @@
     }
   },
   "EDUCATION": {
-  "TITLE": "Formation",
-  "TASKS": "Tâches de formation",
-  "VIEW_EDUCATION": "Voir ma formation",
-  "OTHER_PLACES": "Autres emplacements",
-  "DESKTOP": "Bureau",
-  "MY_COMPUTER": "Poste de travail",
-  "DETAILS": "Détails",
-  "SELECT_ITEM": "Sélectionnez un élément pour afficher ses détails.",
-  "LOADING": "Chargement de la formation...",
-  "EMPTY": "Aucune formation disponible."
-}
+    "TITLE": "Formation",
+    "TASKS": "Tâches de formation",
+    "VIEW_EDUCATION": "Voir ma formation",
+    "OTHER_PLACES": "Autres emplacements",
+    "DESKTOP": "Bureau",
+    "MY_COMPUTER": "Poste de travail",
+    "DETAILS": "Détails",
+    "SELECT_ITEM": "Sélectionnez un élément pour afficher ses détails.",
+    "LOADING": "Chargement de la formation...",
+    "EMPTY": "Aucune formation disponible.",
+    "AVERAGE": "Moyenne",
+    "ESTIMATED_GPA": "GPA estimé"
+  }
 }

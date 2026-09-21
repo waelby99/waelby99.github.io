@@ -1,0 +1,27 @@
+<div class="places-list">
+
+  @for (
+    place of visiblePlaces;
+    track place.id
+  ) {
+
+    <button
+      type="button"
+      class="place-link"
+      (click)="open(place)"
+    >
+      <img
+        class="place-icon"
+        [src]="place.icon"
+        alt=""
+        draggable="false"
+      />
+
+      <span dir="auto">
+        {{ place.labelKey | translate }}
+      </span>
+    </button>
+
+  }
+
+</div>
