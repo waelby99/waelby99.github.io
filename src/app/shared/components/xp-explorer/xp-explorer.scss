@@ -1,0 +1,815 @@
+:host {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+  direction: ltr;
+  z-index: 5000;
+}
+
+
+/* =====================================================
+   WINDOW
+===================================================== */
+
+.explorer-window {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  pointer-events: auto;
+
+  background: #0055e5;
+
+  border: 3px solid #0055e5;
+  border-radius: 7px 7px 0 0;
+
+  box-shadow:
+    3px 4px 10px
+    rgb(0 0 0 / 35%);
+
+  color: #000;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+}
+
+.explorer-window.maximized {
+  border-radius: 0;
+}
+
+.explorer-window.minimized {
+  height: 29px !important;
+  min-height: 29px !important;
+}
+
+
+/* =====================================================
+   TITLE BAR
+===================================================== */
+
+.title-bar {
+  height: 29px;
+  min-height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  padding: 0 3px 0 5px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #2788f5 0%,
+      #0865df 45%,
+      #0054cf 70%,
+      #084abc 100%
+    );
+
+  border-radius:
+    4px 4px 0 0;
+
+  color: #fff;
+
+  cursor: move;
+
+  user-select: none;
+
+  touch-action: none;
+}
+
+.explorer-window.maximized
+.title-bar {
+  border-radius: 0;
+  cursor: default;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.title-left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  overflow: hidden;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-shadow:
+    1px 1px #003b8c;
+
+  pointer-events: none;
+}
+
+.title-left span {
+  overflow: hidden;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+.title-icon {
+  width: 18px;
+  height: 18px;
+
+  flex:
+    0 0 18px;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
+/* =====================================================
+   WINDOW CONTROLS
+===================================================== */
+
+.window-controls {
+  display: flex;
+
+  align-items: center;
+
+  gap: 2px;
+
+  flex-shrink: 0;
+
+  cursor: default;
+}
+
+button.window-button {
+  width: 22px !important;
+  min-width: 22px !important;
+
+  height: 22px !important;
+  min-height: 22px !important;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  overflow: hidden;
+
+  border: none !important;
+
+  border-radius:
+    4px !important;
+
+  outline: none !important;
+
+  background:
+    transparent !important;
+
+  background-image:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  cursor: pointer;
+
+  appearance:
+    none !important;
+
+  -webkit-appearance:
+    none !important;
+}
+
+
+/*
+ * Your PNGs have some white pixels around
+ * their outside edge.
+ *
+ * Slightly enlarging them inside an
+ * overflow-hidden button removes that
+ * unwanted white halo.
+ */
+.window-control-icon {
+  width: 24px;
+  height: 24px;
+
+  min-width: 24px;
+  min-height: 24px;
+
+  display: block;
+
+  object-fit: cover;
+
+  transform:
+    scale(1.08);
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+button.window-button:hover
+.window-control-icon {
+  filter:
+    brightness(1.07);
+}
+
+button.window-button:active
+.window-control-icon {
+  transform:
+    scale(1.08)
+    translateY(1px);
+}
+
+
+/* =====================================================
+   MENU BAR
+===================================================== */
+
+.menu-bar {
+  height: 24px;
+  min-height: 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  padding: 0 5px;
+
+  background: #ece9d8;
+
+  border-bottom:
+    1px solid #aca899;
+}
+
+.menu-bar button {
+  height: 21px;
+
+  padding:
+    0 7px !important;
+
+  margin:
+    0 !important;
+
+  border:
+    none !important;
+
+  border-radius:
+    0 !important;
+
+  outline:
+    none !important;
+
+  background:
+    transparent !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    #000 !important;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    11px;
+
+  cursor:
+    default;
+}
+
+.menu-bar button:hover {
+  background:
+    #316ac5 !important;
+
+  color:
+    #fff !important;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar {
+  height: 46px;
+  min-height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 2px;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    2px 5px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #faf9f4 0%,
+      #ece9d8 100%
+    );
+
+  border-bottom:
+    1px solid #aca899;
+}
+
+button.toolbar-button {
+  height: 38px;
+
+  min-width:
+    0 !important;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap: 4px;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    2px 6px !important;
+
+  margin:
+    0 !important;
+
+  border:
+    1px solid
+    transparent !important;
+
+  border-radius:
+    2px !important;
+
+  outline:
+    none !important;
+
+  background:
+    transparent !important;
+
+  box-shadow:
+    none !important;
+
+  color:
+    #000 !important;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:
+    11px;
+
+  white-space:
+    nowrap;
+
+  cursor:
+    default;
+}
+
+button.toolbar-button:hover:not(:disabled) {
+  border-color:
+    #c7b778 !important;
+
+  background:
+    #fff5c5 !important;
+}
+
+button.toolbar-button:active:not(:disabled) {
+  border-color:
+    #9e8f54 !important;
+
+  background:
+    #ffe997 !important;
+}
+
+
+/* =====================================================
+   DISABLED BACK / FORWARD
+===================================================== */
+
+button.toolbar-button:disabled {
+  color:
+    #8a8a8a !important;
+
+  cursor:
+    default;
+}
+
+button.toolbar-button:disabled
+.toolbar-icon {
+  filter:
+    grayscale(1);
+
+  opacity:
+    0.42;
+}
+
+button.toolbar-button:disabled
+.toolbar-arrow {
+  color:
+    #999;
+}
+
+
+/* =====================================================
+   TOOLBAR ICONS
+===================================================== */
+
+.toolbar-icon {
+  width: 28px;
+  height: 28px;
+
+  display: block;
+
+  flex:
+    0 0 28px;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+.navigation-icon {
+  width: 30px;
+  height: 30px;
+
+  flex-basis:
+    30px;
+}
+
+.icon-only {
+  width: 38px;
+
+  padding:
+    2px 3px !important;
+}
+
+.views-button {
+  min-width:
+    43px !important;
+
+  padding:
+    2px 5px !important;
+}
+
+.views-icon {
+  width: 25px;
+  height: 25px;
+
+  flex-basis:
+    25px;
+}
+
+.toolbar-arrow {
+  color: #333;
+
+  font-size: 7px;
+
+  line-height: 1;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 34px;
+
+  flex:
+    0 0 1px;
+
+  margin:
+    0 4px;
+
+  background:
+    #aca899;
+
+  border-right:
+    1px solid #fff;
+}
+
+
+/* =====================================================
+   ADDRESS BAR
+===================================================== */
+
+.address-bar {
+  height: 27px;
+  min-height: 27px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    2px 5px;
+
+  background:
+    #ece9d8;
+
+  border-bottom:
+    1px solid #aca899;
+}
+
+.address-label {
+  color: #666;
+}
+
+.address-field {
+  height: 21px;
+
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    1px 4px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border:
+    1px solid #7f9db9;
+}
+
+.address-field img {
+  width: 16px;
+  height: 16px;
+
+  flex:
+    0 0 16px;
+
+  object-fit:
+    contain;
+}
+
+.address-field span {
+  overflow:
+    hidden;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =====================================================
+   EXPLORER BODY
+===================================================== */
+
+.explorer-body {
+  flex: 1;
+
+  min-height: 0;
+
+  display: flex;
+
+  background: #fff;
+}
+
+.explorer-sidebar {
+  width: 205px;
+
+  min-width:
+    205px;
+
+  box-sizing:
+    border-box;
+
+  padding: 12px;
+
+  overflow-y:
+    auto;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #7b99df 0%,
+      #667fd1 100%
+    );
+}
+
+.explorer-content {
+  flex: 1;
+
+  min-width: 0;
+
+  box-sizing:
+    border-box;
+
+  padding: 15px;
+
+  overflow: auto;
+
+  background: #fff;
+}
+
+
+/* =====================================================
+   RESIZE HANDLES
+===================================================== */
+
+.resize-handle {
+  position:
+    absolute;
+
+  z-index:
+    100;
+
+  touch-action:
+    none;
+}
+
+.resize-n {
+  top: -3px;
+
+  left: 8px;
+  right: 8px;
+
+  height: 7px;
+
+  cursor:
+    n-resize;
+}
+
+.resize-s {
+  bottom: -3px;
+
+  left: 8px;
+  right: 8px;
+
+  height: 7px;
+
+  cursor:
+    s-resize;
+}
+
+.resize-e {
+  top: 8px;
+
+  right: -3px;
+
+  bottom: 8px;
+
+  width: 7px;
+
+  cursor:
+    e-resize;
+}
+
+.resize-w {
+  top: 8px;
+
+  left: -3px;
+
+  bottom: 8px;
+
+  width: 7px;
+
+  cursor:
+    w-resize;
+}
+
+.resize-ne {
+  top: -3px;
+  right: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  cursor:
+    ne-resize;
+}
+
+.resize-nw {
+  top: -3px;
+  left: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  cursor:
+    nw-resize;
+}
+
+.resize-se {
+  right: -3px;
+  bottom: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  cursor:
+    se-resize;
+}
+
+.resize-sw {
+  left: -3px;
+  bottom: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  cursor:
+    sw-resize;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+  .explorer-sidebar {
+    display: none;
+  }
+
+  .menu-bar button:nth-child(4),
+  .menu-bar button:nth-child(5) {
+    display: none;
+  }
+
+  .toolbar {
+    overflow-x: auto;
+  }
+
+  .toolbar-icon {
+    width: 24px;
+    height: 24px;
+
+    flex-basis: 24px;
+  }
+
+  .navigation-icon {
+    width: 26px;
+    height: 26px;
+
+    flex-basis: 26px;
+  }
+}

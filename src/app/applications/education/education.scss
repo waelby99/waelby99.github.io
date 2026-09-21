@@ -1,0 +1,364 @@
+:host {
+  display: contents;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.education-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* =====================================================
+   XP TASK BOX
+===================================================== */
+
+.task-box {
+  overflow: hidden;
+  background: #d6dff7;
+  border-radius: 5px 5px 2px 2px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 35%);
+}
+
+.task-box-title {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  box-sizing: border-box;
+  padding: 5px 7px;
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #e7eeff 55%,
+    #c9d8f7 100%
+  );
+  color: #174ea0;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.task-box-title > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-box-content {
+  padding: 7px 8px;
+}
+
+
+/* =====================================================
+   COLLAPSE / EXPAND BUTTON
+===================================================== */
+
+button.collapse-button {
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  flex: 0 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+button.collapse-button:focus,
+button.collapse-button:focus-visible {
+  outline: none !important;
+}
+
+.collapse-icon {
+  width: 17px;
+  height: 17px;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    transform 140ms ease,
+    filter 120ms ease;
+}
+
+.collapse-icon.inverted {
+  transform: rotate(180deg);
+}
+
+button.collapse-button:hover .collapse-icon {
+  filter: brightness(1.08);
+}
+
+button.collapse-button:active .collapse-icon {
+  transform: translateY(1px);
+}
+
+button.collapse-button:active .collapse-icon.inverted {
+  transform: rotate(180deg) translateY(-1px);
+}
+
+
+/* =====================================================
+   TASK LINKS
+===================================================== */
+
+.task-link {
+  min-height: 23px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #174ea0;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  cursor: default;
+}
+
+.task-link img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.education-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  color: #222;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.education-details strong {
+  color: #174ea0;
+  font-weight: 700;
+}
+
+.empty-details {
+  color: #777;
+}
+
+
+/* =====================================================
+   MAIN EDUCATION CONTENT
+===================================================== */
+
+.education-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.education-message {
+  padding: 20px;
+  color: #555;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   EDUCATION ITEM
+===================================================== */
+
+button.education-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 10px !important;
+  margin: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  text-align: left;
+  cursor: default;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+button.education-item:hover {
+  background: #f5f8ff !important;
+  border-color: #d7e3f8 !important;
+}
+
+button.education-item.selected {
+  background: #316ac5 !important;
+  border-color: #2459a5 !important;
+  color: #fff !important;
+}
+
+
+/* =====================================================
+   EDUCATION ICON
+===================================================== */
+
+.education-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* =====================================================
+   EDUCATION TEXT
+===================================================== */
+
+.education-text {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.education-institution {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.education-degree {
+  color: inherit;
+}
+
+.education-field {
+  color: #444;
+}
+
+.education-period,
+.education-location {
+  color: #666;
+}
+
+.education-description {
+  max-width: 700px;
+  margin: 5px 0 0;
+  color: #555;
+  line-height: 15px;
+}
+
+button.education-item.selected .education-field,
+button.education-item.selected .education-period,
+button.education-item.selected .education-location,
+button.education-item.selected .education-description {
+  color: #fff;
+}
+
+
+/* =====================================================
+   ACADEMIC INFO
+===================================================== */
+
+.education-academic-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 10px;
+}
+
+.education-academic-info strong {
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   COURSEWORK
+===================================================== */
+
+.coursework {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.course {
+  padding: 2px 5px;
+  border: 1px solid #bbb;
+  background: #f4f4f4;
+  color: #333;
+  font-size: 10px;
+}
+
+button.education-item.selected .course {
+  border-color: rgb(255 255 255 / 60%);
+  background: rgb(255 255 255 / 15%);
+  color: #fff;
+}
+
+
+/* =====================================================
+   RTL
+===================================================== */
+
+:host-context([dir='rtl']) button.education-item {
+  text-align: right;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+  button.education-item {
+    gap: 8px;
+    padding: 7px !important;
+  }
+
+  .education-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .education-description,
+  .coursework {
+    display: none;
+  }
+
+  .education-academic-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,193 @@
+[
+  {
+    "id": "esprit",
+    "institution": {
+      "en": "Ecole Supérieure Privée d'Ingénierie et de Technologies - ESPRIT",
+      "fr": "École Supérieure Privée d'Ingénierie et de Technologies - ESPRIT",
+      "ar": "المدرسة العليا الخاصة للهندسة والتكنولوجيا - ESPRIT"
+    },
+    "degree": {
+      "en": "Engineer's Degree in Information Technology",
+      "fr": "Diplôme national d'ingénieur en informatique",
+      "ar": "الشهادة الوطنية لمهندس في الإعلامية"
+    },
+    "field": {
+      "en": "Information Technology",
+      "fr": "Informatique",
+      "ar": "الإعلامية"
+    },
+    "location": {
+      "en": "Tunis, Tunisia",
+      "fr": "Tunis, Tunisie",
+      "ar": "تونس، تونس"
+    },
+    "period": "September 2022 - December 2025",
+    "average": "12.89 / 20",
+    "estimatedGpa": "2.58 / 4.00",
+    "description": {
+      "en": "Engineering curriculum focused on software development, distributed systems, data, networks and modern software engineering practices.",
+      "fr": "Formation d'ingénieur axée sur le développement logiciel, les systèmes distribués, la data, les réseaux et les pratiques modernes du génie logiciel.",
+      "ar": "تكوين هندسي يركز على تطوير البرمجيات والأنظمة الموزعة والبيانات والشبكات وممارسات هندسة البرمجيات الحديثة."
+    },
+    "coursework": {
+      "en": [
+        "Software Engineering",
+        "Java & Object-Oriented Programming",
+        "Web & Mobile Development",
+        "Databases, NoSQL & Big Data",
+        "Data Mining",
+        "Software Architecture & SOA",
+        "Distributed Web Applications",
+        "DevOps",
+        "Networks & Cybersecurity",
+        "Operating Systems & Unix Administration",
+        "Algorithms & Operations Research",
+        "Graphs & Linear Programming",
+        "Software Testing & Validation",
+        "Project Management",
+        "Entrepreneurship",
+        "Engineering Internship",
+        "Final-Year Engineering Project"
+      ],
+      "fr": [
+        "Génie logiciel",
+        "Java & programmation orientée objet",
+        "Développement Web & Mobile",
+        "Bases de données, NoSQL & Big Data",
+        "Data Mining",
+        "Architecture logicielle & SOA",
+        "Applications Web distribuées",
+        "DevOps",
+        "Réseaux & cybersécurité",
+        "Systèmes d'exploitation & administration Unix",
+        "Algorithmique & recherche opérationnelle",
+        "Graphes & programmation linéaire",
+        "Test & validation logiciel",
+        "Gestion de projet",
+        "Entrepreneuriat",
+        "Stage d'ingénieur",
+        "Projet de fin d'études"
+      ],
+      "ar": [
+        "هندسة البرمجيات",
+        "Java والبرمجة كائنية التوجه",
+        "تطوير الويب وتطبيقات الهاتف",
+        "قواعد البيانات وNoSQL والبيانات الضخمة",
+        "التنقيب في البيانات",
+        "معمارية البرمجيات وSOA",
+        "تطبيقات الويب الموزعة",
+        "DevOps",
+        "الشبكات والأمن السيبراني",
+        "أنظمة التشغيل وإدارة Unix",
+        "الخوارزميات وبحوث العمليات",
+        "الرسوم البيانية والبرمجة الخطية",
+        "اختبار البرمجيات والتحقق منها",
+        "إدارة المشاريع",
+        "ريادة الأعمال",
+        "تربص مهندس",
+        "مشروع ختم الدراسات"
+      ]
+    },
+    "icon": "/assets/icons/desktop/education.png"
+  },
+  {
+    "id": "iset-charguia",
+    "institution": {
+      "en": "Higher Institute of Technological Studies of Charguia - ISET Charguia",
+      "fr": "Institut Supérieur des Études Technologiques de Charguia - ISET Charguia",
+      "ar": "المعهد العالي للدراسات التكنولوجية بالشرقية - ISET Charguia"
+    },
+    "degree": {
+      "en": "Bachelor's Degree in Information Technology",
+      "fr": "Licence appliquée en Technologies de l'Information",
+      "ar": "الإجازة التطبيقية في تكنولوجيا المعلومات"
+    },
+    "field": {
+      "en": "Information Systems Development",
+      "fr": "Développement des systèmes d'information",
+      "ar": "تطوير نظم المعلومات"
+    },
+    "location": {
+      "en": "Tunis, Tunisia",
+      "fr": "Tunis, Tunisie",
+      "ar": "تونس، تونس"
+    },
+    "period": "September 2018 - June 2022",
+    "average": "12.49 / 20",
+    "estimatedGpa": "2.50 / 4.00",
+    "description": {
+      "en": "Applied IT degree covering programming, databases, web and mobile development, software architecture, networking and applied mathematics.",
+      "fr": "Formation appliquée en informatique couvrant la programmation, les bases de données, le développement Web et Mobile, l'architecture logicielle, les réseaux et les mathématiques appliquées.",
+      "ar": "تكوين تطبيقي في الإعلامية يشمل البرمجة وقواعد البيانات وتطوير الويب والهاتف ومعمارية البرمجيات والشبكات والرياضيات التطبيقية."
+    },
+    "coursework": {
+      "en": [
+        "Algorithms & Programming",
+        "Object-Oriented Programming",
+        "Databases & DBMS",
+        "Advanced Data Management",
+        "Web Development",
+        "Mobile Development",
+        "Software Architecture",
+        "Service-Oriented Architecture",
+        "Python",
+        "Node.js",
+        "Operating Systems",
+        "Computer Architecture",
+        "Computer Networks",
+        "Applied Mathematics",
+        "Statistics & Probability",
+        "Operations Research",
+        "Project Management",
+        "English & Communication",
+        "Professional Internships",
+        "Final-Year Project"
+      ],
+      "fr": [
+        "Algorithmique & programmation",
+        "Programmation orientée objet",
+        "Bases de données & SGBD",
+        "Gestion avancée des données",
+        "Développement Web",
+        "Développement Mobile",
+        "Architecture logicielle",
+        "Architecture orientée services",
+        "Python",
+        "Node.js",
+        "Systèmes d'exploitation",
+        "Architecture des ordinateurs",
+        "Réseaux informatiques",
+        "Mathématiques appliquées",
+        "Statistiques & probabilités",
+        "Recherche opérationnelle",
+        "Gestion de projet",
+        "Anglais & communication",
+        "Stages professionnels",
+        "Projet de fin d'études"
+      ],
+      "ar": [
+        "الخوارزميات والبرمجة",
+        "البرمجة كائنية التوجه",
+        "قواعد البيانات وأنظمة إدارة قواعد البيانات",
+        "إدارة البيانات المتقدمة",
+        "تطوير الويب",
+        "تطوير تطبيقات الهاتف",
+        "معمارية البرمجيات",
+        "المعمارية الموجهة للخدمات",
+        "Python",
+        "Node.js",
+        "أنظمة التشغيل",
+        "معمارية الحاسوب",
+        "شبكات الحاسوب",
+        "الرياضيات التطبيقية",
+        "الإحصاء والاحتمالات",
+        "بحوث العمليات",
+        "إدارة المشاريع",
+        "اللغة الإنجليزية والتواصل",
+        "التربصات المهنية",
+        "مشروع ختم الدراسات"
+      ]
+    },
+    "icon": "/assets/icons/desktop/education.png"
+  }
+]

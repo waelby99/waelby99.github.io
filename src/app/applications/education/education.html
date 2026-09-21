@@ -1,0 +1,287 @@
+<app-xp-explorer
+  [title]="'EDUCATION.TITLE' | translate"
+  [path]="'EDUCATION.TITLE' | translate"
+  icon="/assets/icons/desktop/education.png"
+  (closed)="close()"
+>
+  <!-- =================================================
+       LEFT XP SIDEBAR
+  ================================================== -->
+
+  <div explorer-sidebar class="education-sidebar">
+
+    <!-- =================================================
+         EDUCATION TASKS
+    ================================================== -->
+
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>{{ 'EDUCATION.TASKS' | translate }}</span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              educationTasksOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          [attr.aria-label]="
+            (
+              educationTasksOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleEducationTasks()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!educationTasksOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+      </div>
+
+      @if (educationTasksOpen()) {
+        <div class="task-box-content">
+          <div class="task-link">
+            <img
+              src="/assets/icons/desktop/education.png"
+              alt=""
+              draggable="false"
+            />
+
+            <span>
+              {{ 'EDUCATION.VIEW_EDUCATION' | translate }}
+            </span>
+          </div>
+        </div>
+      }
+    </section>
+
+
+    <!-- =================================================
+         OTHER PLACES
+    ================================================== -->
+
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>{{ 'EDUCATION.OTHER_PLACES' | translate }}</span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              otherPlacesOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          [attr.aria-label]="
+            (
+              otherPlacesOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleOtherPlaces()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!otherPlacesOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+      </div>
+
+      @if (otherPlacesOpen()) {
+        <div class="task-box-content">
+          <app-xp-other-places
+            currentSection="education"
+            (navigate)="navigateTo($event)"
+          />
+        </div>
+      }
+    </section>
+
+
+    <!-- =================================================
+         DETAILS
+    ================================================== -->
+
+    <section class="task-box">
+      <div class="task-box-title">
+        <span>{{ 'EDUCATION.DETAILS' | translate }}</span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              detailsOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          [attr.aria-label]="
+            (
+              detailsOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleDetails()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!detailsOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+      </div>
+
+      @if (detailsOpen()) {
+        @if (selectedEducation(); as selected) {
+          <div class="education-details">
+            <strong>
+              {{ text(selected.institution) }}
+            </strong>
+
+            <span>
+              {{ text(selected.degree) }}
+            </span>
+
+            <span>
+              {{ text(selected.field) }}
+            </span>
+
+            <span>
+              {{ selected.period }}
+            </span>
+
+            <span>
+              {{ text(selected.location) }}
+            </span>
+
+            <span>
+              <strong>{{ 'EDUCATION.AVERAGE' | translate }}:</strong>
+              {{ selected.average }}
+            </span>
+
+            <span>
+              <strong>{{ 'EDUCATION.ESTIMATED_GPA' | translate }}:</strong>
+              {{ selected.estimatedGpa }}
+            </span>
+          </div>
+        } @else {
+          <div class="education-details empty-details">
+            {{ 'EDUCATION.SELECT_ITEM' | translate }}
+          </div>
+        }
+      }
+    </section>
+
+  </div>
+
+
+  <!-- =================================================
+       MAIN EDUCATION CONTENT
+  ================================================== -->
+
+  <div explorer-content class="education-content">
+
+    @if (loading()) {
+      <div class="education-message">
+        {{ 'EDUCATION.LOADING' | translate }}
+      </div>
+    } @else if (education().length === 0) {
+      <div class="education-message">
+        {{ 'EDUCATION.EMPTY' | translate }}
+      </div>
+    } @else {
+      @for (entry of education(); track entry.id) {
+
+        <button
+          type="button"
+          class="education-item"
+          [class.selected]="selectedEducation()?.id === entry.id"
+          (click)="selectEducation(entry)"
+        >
+          <img
+            class="education-icon"
+            [src]="entry.icon || '/assets/icons/desktop/education.png'"
+            alt=""
+            draggable="false"
+          />
+
+          <div class="education-text">
+
+            <strong class="education-institution">
+              {{ text(entry.institution) }}
+            </strong>
+
+            <span class="education-degree">
+              {{ text(entry.degree) }}
+            </span>
+
+            <span class="education-field">
+              {{ text(entry.field) }}
+            </span>
+
+            <span class="education-period">
+              {{ entry.period }}
+            </span>
+
+            <span class="education-location">
+              {{ text(entry.location) }}
+            </span>
+
+            <p class="education-description">
+              {{ text(entry.description) }}
+            </p>
+
+
+            @if (selectedEducation()?.id === entry.id) {
+
+              <div class="education-academic-info">
+                <span>
+                  <strong>{{ 'EDUCATION.AVERAGE' | translate }}:</strong>
+                  {{ entry.average }}
+                </span>
+
+                <span>
+                  <strong>{{ 'EDUCATION.ESTIMATED_GPA' | translate }}:</strong>
+                  {{ entry.estimatedGpa }}
+                </span>
+              </div>
+
+
+              <div class="coursework">
+                @for (course of list(entry.coursework); track course) {
+                  <span class="course">
+                    {{ course }}
+                  </span>
+                }
+              </div>
+
+            }
+
+          </div>
+        </button>
+
+      }
+    }
+
+  </div>
+
+</app-xp-explorer>

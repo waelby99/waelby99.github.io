@@ -31,7 +31,12 @@
     "STRETCH": "تمديد",
     "OK": "موافق",
     "CANCEL": "إلغاء",
-    "APPLY": "تطبيق"
+    "APPLY": "تطبيق",
+    "EDUCATION": "التعليم",
+    "CERTIFICATIONS": "الشهادات",
+    "PROFESSIONAL_EXPERIENCE": "الخبرات المهنية",
+    "EXPAND": "توسيع",
+    "COLLAPSE": "طي"
   },
   "LOGIN": {
     "WELCOME": "مرحباً",
@@ -57,5 +62,19 @@
       "TIP": "نصيحة: انقر بزر الفأرة الأيمن لعرض القوائم.",
       "CLOSE": "إغلاق"
     }
+  },
+  "EDUCATION": {
+    "TITLE": "التعليم",
+    "TASKS": "مهام التعليم",
+    "VIEW_EDUCATION": "عرض تعليمي",
+    "OTHER_PLACES": "أماكن أخرى",
+    "DESKTOP": "سطح المكتب",
+    "MY_COMPUTER": "جهاز الكمبيوتر",
+    "DETAILS": "التفاصيل",
+    "SELECT_ITEM": "حدد عنصرًا لعرض تفاصيله.",
+    "LOADING": "جارٍ تحميل التعليم...",
+    "EMPTY": "لا توجد بيانات تعليمية متاحة.",
+    "AVERAGE": "المعدل",
+    "ESTIMATED_GPA": "المعدل التقديري بنظام GPA"
   }
 }

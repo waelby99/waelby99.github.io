@@ -273,29 +273,17 @@
 ========================================================= */
 
 .windows-area {
-  position:
-    absolute;
+  position: absolute;
 
-  top:
-    0;
+  inset: 0 0 40px 0;
 
-  left:
-    0;
+  overflow: hidden;
 
-  right:
-    0;
+  pointer-events: none;
 
-  bottom:
-    40px;
+  direction: ltr;
 
-  pointer-events:
-    none;
-
-  direction:
-    ltr;
-
-  z-index:
-    100;
+  z-index: 100;
 }
 
 
