@@ -88,7 +88,7 @@
         "مشروع ختم الدراسات"
       ]
     },
-    "icon": "/assets/icons/desktop/education.png"
+    "icon": "/assets/images/esprit.png"
   },
   {
     "id": "iset-charguia",
@@ -188,6 +188,6 @@
         "مشروع ختم الدراسات"
       ]
     },
-    "icon": "/assets/icons/desktop/education.png"
+    "icon": "/assets/images/isetch.png"
   }
 ]
