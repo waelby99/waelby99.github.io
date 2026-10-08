@@ -36,7 +36,8 @@
     "CERTIFICATIONS": "Certifications",
     "PROFESSIONAL_EXPERIENCE": "Expériences professionnelles",
     "EXPAND": "Développer",
-    "COLLAPSE": "Réduire"
+    "COLLAPSE": "Réduire",
+    "ABOUT_ME": "A propos de moi"
   },
   "LOGIN": {
     "WELCOME": "Bienvenue",
@@ -76,5 +77,26 @@
     "EMPTY": "Aucune formation disponible.",
     "AVERAGE": "Moyenne",
     "ESTIMATED_GPA": "GPA estimé"
-  }
+  },
+  "ABOUT": {
+  "TITLE": "À propos de moi",
+  "TASKS": "Tâches du profil",
+  "VIEW_PROFILE": "Voir mon profil",
+  "OTHER_PLACES": "Autres emplacements",
+  "DETAILS": "Détails",
+  "LANGUAGES": "Langues",
+
+  "ABOUT_ME": "À propos de moi",
+
+  "SKILLS": "Compétences & technologies",
+  "SKILLS_DESCRIPTION": "Les technologies et outils avec lesquels j'ai travaillé.",
+
+  "INTERESTS": "En dehors du code",
+
+  "FIND_ME_ONLINE": "Retrouvez-moi en ligne",
+  "FIND_ME_DESCRIPTION": "Mes réseaux sociaux, mon activité de programmation, mes articles et les autres versions de mon portfolio.",
+
+  "LOADING": "Chargement du profil...",
+  "ERROR": "Impossible de charger le profil."
+}
 }

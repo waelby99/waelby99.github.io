@@ -113,7 +113,16 @@ export class DesktopService {
       x: 100,
       y: 14,
       type: 'folder'
-    }
+    },
+    {
+  id: 'about-me',
+  name: 'About Me',
+  labelKey: 'SYSTEM.ABOUT_ME',
+  icon: '/assets/icons/desktop/tour-xp.png',
+  type: 'folder',
+  x: 100,
+  y: 104
+},
   ];
 
   readonly icons = signal<DesktopIcon[]>(

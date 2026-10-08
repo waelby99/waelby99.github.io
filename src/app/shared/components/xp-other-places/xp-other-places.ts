@@ -7,17 +7,20 @@ import {
 
 import { TranslatePipe } from '@ngx-translate/core';
 
+
 export type PortfolioSection =
+  | 'about'
   | 'education'
   | 'projects'
-  | 'certifications'
-  | 'experience';
+  | 'certifications';
+
 
 interface PortfolioPlace {
   id: PortfolioSection;
   labelKey: string;
   icon: string;
 }
+
 
 @Component({
   selector: 'app-xp-other-places',
@@ -29,46 +32,65 @@ interface PortfolioPlace {
   styleUrl: './xp-other-places.scss'
 })
 export class XpOtherPlaces {
-  @Input({ required: true })
+
+  @Input({
+    required: true
+  })
   currentSection!: PortfolioSection;
+
 
   @Output()
   navigate =
     new EventEmitter<PortfolioSection>();
 
-  readonly places: PortfolioPlace[] = [
+
+  readonly places:
+    PortfolioPlace[] = [
+
+    {
+      id: 'about',
+      labelKey: 'SYSTEM.ABOUT_ME',
+      icon: '/assets/icons/desktop/tour-xp.png'
+    },
+
     {
       id: 'education',
       labelKey: 'SYSTEM.EDUCATION',
       icon: '/assets/icons/desktop/education.png'
     },
+
     {
       id: 'projects',
       labelKey: 'SYSTEM.PROJECTS',
       icon: '/assets/icons/desktop/projects.png'
     },
+
     {
       id: 'certifications',
       labelKey: 'SYSTEM.CERTIFICATIONS',
       icon: '/assets/icons/desktop/certifications.png'
-    },
-    {
-      id: 'experience',
-      labelKey: 'SYSTEM.PROFESSIONAL_EXPERIENCE',
-      icon: '/assets/icons/desktop/experience.png'
     }
+
   ];
 
-  get visiblePlaces(): PortfolioPlace[] {
+
+  get visiblePlaces():
+    PortfolioPlace[] {
+
     return this.places.filter(
       place =>
-        place.id !== this.currentSection
+        place.id !==
+        this.currentSection
     );
   }
+
 
   open(
     place: PortfolioPlace
   ): void {
-    this.navigate.emit(place.id);
+
+    this.navigate.emit(
+      place.id
+    );
   }
 }

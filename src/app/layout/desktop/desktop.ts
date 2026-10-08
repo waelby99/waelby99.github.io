@@ -14,13 +14,20 @@ import {
 
 import { DisplayProperties } from '../../applications/display-properties/display-properties';
 import { Education } from '../../applications/education/education';
+import { AboutMe } from '../../applications/about-me/about-me';
+
+import type {
+  PortfolioSection
+} from '../../shared/components/xp-other-places/xp-other-places';
 
 import { Taskbar } from '../taskbar/taskbar';
+
 
 type DesktopSubmenu =
   | 'sort'
   | 'new'
   | null;
+
 
 @Component({
   selector: 'app-desktop',
@@ -29,6 +36,7 @@ type DesktopSubmenu =
     TranslatePipe,
     DisplayProperties,
     Education,
+    AboutMe,
     Taskbar
   ],
   templateUrl: './desktop.html',
@@ -50,6 +58,9 @@ export class Desktop {
   readonly educationOpen =
     signal(false);
 
+  readonly aboutMeOpen =
+    signal(false);
+
   readonly contextMenuOpen =
     signal(false);
 
@@ -69,6 +80,7 @@ export class Desktop {
       ) !== 'true'
     );
 
+
   private draggingIconId:
     string | null = null;
 
@@ -80,10 +92,14 @@ export class Desktop {
 
   private iconWasDragged = false;
 
+
+  /* =====================================================
+     WALLPAPER
+  ===================================================== */
+
   desktopBackgroundSize(): string {
     switch (
-      this.desktopService
-        .currentWallpaperPosition()
+      this.desktopService.currentWallpaperPosition()
     ) {
       case 'center':
       case 'tile':
@@ -95,10 +111,10 @@ export class Desktop {
     }
   }
 
+
   desktopBackgroundRepeat(): string {
     switch (
-      this.desktopService
-        .currentWallpaperPosition()
+      this.desktopService.currentWallpaperPosition()
     ) {
       case 'tile':
         return 'repeat';
@@ -109,6 +125,11 @@ export class Desktop {
         return 'no-repeat';
     }
   }
+
+
+  /* =====================================================
+     DESKTOP ICON DRAGGING
+  ===================================================== */
 
   startIconDrag(
     event: PointerEvent,
@@ -125,9 +146,7 @@ export class Desktop {
     const target =
       event.currentTarget;
 
-    if (
-      !(target instanceof HTMLElement)
-    ) {
+    if (!(target instanceof HTMLElement)) {
       return;
     }
 
@@ -135,12 +154,10 @@ export class Desktop {
       target.getBoundingClientRect();
 
     this.dragOffsetX =
-      event.clientX -
-      rect.left;
+      event.clientX - rect.left;
 
     this.dragOffsetY =
-      event.clientY -
-      rect.top;
+      event.clientY - rect.top;
 
     this.dragStartX =
       event.clientX;
@@ -158,6 +175,7 @@ export class Desktop {
       event.pointerId
     );
   }
+
 
   moveIcon(
     event: PointerEvent
@@ -179,11 +197,10 @@ export class Desktop {
       );
 
     /*
-     * Ignore tiny mouse movement.
+     * Ignore tiny pointer movements.
      *
-     * This is important so a normal
-     * Windows-style double click does not
-     * accidentally count as dragging.
+     * This prevents a normal double-click
+     * from accidentally becoming an icon drag.
      */
     if (
       !this.iconWasDragged &&
@@ -198,9 +215,7 @@ export class Desktop {
     const desktop =
       event.currentTarget;
 
-    if (
-      !(desktop instanceof HTMLElement)
-    ) {
+    if (!(desktop instanceof HTMLElement)) {
       return;
     }
 
@@ -246,6 +261,7 @@ export class Desktop {
     );
   }
 
+
   finishIconDrag(): void {
     if (!this.draggingIconId) {
       return;
@@ -259,6 +275,11 @@ export class Desktop {
       null;
   }
 
+
+  /* =====================================================
+     OPEN DESKTOP ICON
+  ===================================================== */
+
   openDesktopIcon(
     icon: DesktopIcon,
     event: MouseEvent
@@ -267,8 +288,8 @@ export class Desktop {
     event.stopPropagation();
 
     /*
-     * Don't open applications when the user
-     * has just dragged the icon.
+     * Do not open an application immediately
+     * after its desktop icon was dragged.
      */
     if (this.iconWasDragged) {
       this.iconWasDragged = false;
@@ -278,6 +299,10 @@ export class Desktop {
     this.closeContextMenu();
 
     switch (icon.id) {
+      case 'about-me':
+        this.openAboutMe();
+        break;
+
       case 'education':
         this.openEducation();
         break;
@@ -291,32 +316,112 @@ export class Desktop {
     }
   }
 
+
+  /* =====================================================
+     ABOUT ME
+  ===================================================== */
+
+  openAboutMe(): void {
+    this.aboutMeOpen.set(true);
+    this.closeContextMenu();
+  }
+
+
+  closeAboutMe(): void {
+    this.aboutMeOpen.set(false);
+  }
+
+
+  /* =====================================================
+     EDUCATION
+  ===================================================== */
+
   openEducation(): void {
     this.educationOpen.set(true);
     this.closeContextMenu();
   }
 
+
   closeEducation(): void {
     this.educationOpen.set(false);
   }
+
+
+  /* =====================================================
+     PORTFOLIO NAVIGATION
+  ===================================================== */
+
+  openPortfolioSection(
+    section: PortfolioSection
+  ): void {
+    switch (section) {
+      case 'about':
+        this.aboutMeOpen.set(true);
+        this.educationOpen.set(false);
+        break;
+
+      case 'education':
+        this.educationOpen.set(true);
+        this.aboutMeOpen.set(false);
+        break;
+
+      case 'projects':
+        console.log(
+          'Projects application will be added later.'
+        );
+        break;
+
+      case 'certifications':
+        console.log(
+          'Certifications application will be added later.'
+        );
+        break;
+
+      default:
+        console.log(
+          'Portfolio section not implemented yet:',
+          section
+        );
+        break;
+    }
+
+    this.closeContextMenu();
+  }
+
+
+  /* =====================================================
+     COMMAND PROMPT
+  ===================================================== */
 
   openCommandPrompt(): void {
     this.cmdOpen.set(true);
     this.closeContextMenu();
   }
 
+
   closeCommandPrompt(): void {
     this.cmdOpen.set(false);
   }
+
+
+  /* =====================================================
+     DISPLAY PROPERTIES
+  ===================================================== */
 
   openDisplayProperties(): void {
     this.displayPropertiesOpen.set(true);
     this.closeContextMenu();
   }
 
+
   closeDisplayProperties(): void {
     this.displayPropertiesOpen.set(false);
   }
+
+
+  /* =====================================================
+     DESKTOP CONTEXT MENU
+  ===================================================== */
 
   openDesktopContextMenu(
     event: MouseEvent
@@ -355,15 +460,15 @@ export class Desktop {
     x = Math.min(
       x,
       window.innerWidth -
-        menuWidth -
-        5
+      menuWidth -
+      5
     );
 
     y = Math.min(
       y,
       window.innerHeight -
-        menuHeight -
-        45
+      menuHeight -
+      45
     );
 
     this.contextMenuX.set(
@@ -378,10 +483,12 @@ export class Desktop {
     this.contextMenuOpen.set(true);
   }
 
+
   closeContextMenu(): void {
     this.contextMenuOpen.set(false);
     this.activeSubmenu.set(null);
   }
+
 
   setSubmenu(
     submenu: Exclude<
@@ -394,14 +501,25 @@ export class Desktop {
     );
   }
 
+
   clearSubmenu(): void {
     this.activeSubmenu.set(null);
   }
+
+
+  /* =====================================================
+     REFRESH
+  ===================================================== */
 
   refreshDesktop(): void {
     this.desktopService.refresh();
     this.closeContextMenu();
   }
+
+
+  /* =====================================================
+     SORT ICONS
+  ===================================================== */
 
   sortIconsByName(): void {
     this.desktopService
@@ -410,12 +528,18 @@ export class Desktop {
     this.closeContextMenu();
   }
 
+
   sortIconsByType(): void {
     this.desktopService
       .sortIconsByType();
 
     this.closeContextMenu();
   }
+
+
+  /* =====================================================
+     CREATE FILE / FOLDER
+  ===================================================== */
 
   createFolder(): void {
     this.desktopService.createFolder(
@@ -426,6 +550,7 @@ export class Desktop {
     this.closeContextMenu();
   }
 
+
   createTextDocument(): void {
     this.desktopService.createTextFile(
       this.contextMenuX(),
@@ -434,6 +559,11 @@ export class Desktop {
 
     this.closeContextMenu();
   }
+
+
+  /* =====================================================
+     FULLSCREEN
+  ===================================================== */
 
   toggleFullScreen(): void {
     this.closeContextMenu();
@@ -461,6 +591,11 @@ export class Desktop {
       });
   }
 
+
+  /* =====================================================
+     STARTUP NOTICE
+  ===================================================== */
+
   closeStartupNotice(): void {
     this.startupNoticeOpen.set(false);
 
@@ -470,10 +605,16 @@ export class Desktop {
     );
   }
 
+
+  /* =====================================================
+     GLOBAL EVENTS
+  ===================================================== */
+
   @HostListener('document:click')
   onDocumentClick(): void {
     this.closeContextMenu();
   }
+
 
   @HostListener(
     'document:keydown.escape'
