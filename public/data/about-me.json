@@ -23,31 +23,37 @@
     "en": [
       "Hi, I'm Wael. I'm a software engineer who genuinely enjoys building software, understanding how systems work and continuously improving my problem-solving skills.",
       "My main stack is Java, Spring Boot and Angular, alongside TypeScript, PostgreSQL and Docker.",
-      "I currently work at DaleelTeq, where I contribute to the development of software applications.",
+      "I currently work at DaleelTeq, where I contribute to the development of enterprise software applications.",
+      "I have worked with both monolithic applications and microservices architecture, with microservices being part of the systems I work with at DaleelTeq.",
       "I enjoy both larger applications and small technical projects. I like taking an idea, understanding the problem behind it and turning it into something that actually works.",
       "I regularly practice algorithms and data structures through platforms such as LeetCode, Codeforces and Codolio.",
-      "My interests also extend to Machine Learning and Data Science. I publish articles about these topics on Medium.",
-      "I have also tried technologies such as JavaScript, React, Node.js, Express.js, Python, C and PHP in a few smaller projects. I do not work with them as often as my main stack, but they have given me useful exposure to different technologies and development approaches."
+      "My interests also extend to Machine Learning and Data Science, and I publish articles about these topics on Medium.",
+      "I have also worked with MCP-based AI integration, CI/CD, application monitoring, authentication and containerized environments.",
+      "I have tried JavaScript, React, Node.js, Express.js, Python, C and PHP in a few smaller projects. I don't work with these technologies as often as my main stack, but I have used them enough to understand their fundamentals and build small applications with them."
     ],
 
     "fr": [
       "Salut, moi c'est Wael. Je suis ingénieur logiciel et j'aime réellement construire des logiciels, comprendre le fonctionnement des systèmes et améliorer continuellement mes compétences en résolution de problèmes.",
       "Ma stack principale est Java, Spring Boot et Angular, accompagnée de TypeScript, PostgreSQL et Docker.",
-      "Je travaille actuellement chez DaleelTeq, où je contribue au développement d'applications logicielles.",
+      "Je travaille actuellement chez DaleelTeq, où je contribue au développement d'applications logicielles d'entreprise.",
+      "J'ai travaillé avec des applications monolithiques ainsi qu'avec une architecture microservices, notamment dans les systèmes sur lesquels je travaille chez DaleelTeq.",
       "J'aime aussi bien travailler sur de grandes applications que créer de petits projets techniques. J'aime partir d'une idée, comprendre le problème et la transformer en quelque chose qui fonctionne réellement.",
       "Je pratique régulièrement les algorithmes et les structures de données sur des plateformes comme LeetCode, Codeforces et Codolio.",
-      "Mes centres d'intérêt s'étendent également au Machine Learning et à la Data Science. Je publie des articles sur ces sujets sur Medium.",
-      "J'ai également essayé des technologies comme JavaScript, React, Node.js, Express.js, Python, C et PHP dans quelques petits projets. Je ne travaille pas avec elles aussi régulièrement qu'avec ma stack principale, mais elles m'ont permis de découvrir différentes technologies et approches de développement."
+      "Mes centres d'intérêt s'étendent également au Machine Learning et à la Data Science, et je publie des articles sur ces sujets sur Medium.",
+      "J'ai également travaillé avec l'intégration d'IA basée sur MCP, le CI/CD, le monitoring d'applications, l'authentification et les environnements conteneurisés.",
+      "J'ai essayé JavaScript, React, Node.js, Express.js, Python, C et PHP dans quelques petits projets. Je ne travaille pas avec ces technologies aussi régulièrement qu'avec ma stack principale, mais je les ai suffisamment utilisées pour comprendre leurs principes et réaliser de petites applications."
     ],
 
     "ar": [
       "مرحباً، أنا وائل. أنا مهندس برمجيات أستمتع فعلاً ببناء البرمجيات وفهم كيفية عمل الأنظمة وتطوير مهاراتي باستمرار في حل المشكلات.",
       "أعمل بشكل أساسي باستخدام Java وSpring Boot وAngular إلى جانب TypeScript وPostgreSQL وDocker.",
-      "أعمل حالياً في DaleelTeq حيث أساهم في تطوير التطبيقات البرمجية.",
+      "أعمل حالياً في DaleelTeq حيث أساهم في تطوير تطبيقات برمجية موجهة للمؤسسات.",
+      "عملت مع التطبيقات الأحادية وكذلك مع معمارية الخدمات المصغرة Microservices، وهي جزء من الأنظمة التي أعمل عليها في DaleelTeq.",
       "أستمتع بالعمل على التطبيقات الكبيرة وكذلك ببناء مشاريع تقنية صغيرة. أحب البدء بفكرة وفهم المشكلة ثم تحويلها إلى برنامج يعمل فعلياً.",
       "أتدرب باستمرار على الخوارزميات وهياكل البيانات من خلال منصات مثل LeetCode وCodeforces وCodolio.",
       "كما تشمل اهتماماتي تعلم الآلة وعلوم البيانات، وأنشر مقالات حول هذه المواضيع على Medium.",
-      "جربت أيضاً تقنيات مثل JavaScript وReact وNode.js وExpress.js وPython وC وPHP في بعض المشاريع الصغيرة. لا أستخدم هذه التقنيات بنفس كثافة تقنياتي الأساسية، لكنها منحتني خبرة مفيدة مع تقنيات وأساليب تطوير مختلفة."
+      "عملت أيضاً على دمج ميزات الذكاء الاصطناعي باستخدام MCP بالإضافة إلى CI/CD ومراقبة التطبيقات والمصادقة والبيئات المعتمدة على الحاويات.",
+      "جربت أيضاً JavaScript وReact وNode.js وExpress.js وPython وC وPHP في بعض المشاريع الصغيرة. لا أستخدم هذه التقنيات بنفس كثافة تقنياتي الأساسية، لكنني استخدمتها بما يكفي لفهم أساسياتها وبناء تطبيقات صغيرة بها."
     ]
   },
 
@@ -141,6 +147,41 @@
 
     {
       "title": {
+        "en": "Backend & Architecture",
+        "fr": "Backend & Architecture",
+        "ar": "الخلفية والمعمارية"
+      },
+
+      "items": [
+        {
+          "name": "Java",
+          "icon": "https://skillicons.dev/icons?i=java"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "https://skillicons.dev/icons?i=spring"
+        },
+        {
+          "name": "REST APIs",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/braces.svg"
+        },
+        {
+          "name": "JPA / Hibernate",
+          "icon": "https://cdn.simpleicons.org/hibernate/59666C"
+        },
+        {
+          "name": "Microservices",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/boxes.svg"
+        },
+        {
+          "name": "Monolithic Applications",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/app.svg"
+        }
+      ]
+    },
+
+    {
+      "title": {
         "en": "Frontend",
         "fr": "Frontend",
         "ar": "الواجهة الأمامية"
@@ -172,20 +213,12 @@
 
     {
       "title": {
-        "en": "Backend & Data",
-        "fr": "Backend & Data",
-        "ar": "الخلفية والبيانات"
+        "en": "Data & Security",
+        "fr": "Données & Sécurité",
+        "ar": "البيانات والأمان"
       },
 
       "items": [
-        {
-          "name": "Java",
-          "icon": "https://skillicons.dev/icons?i=java"
-        },
-        {
-          "name": "Spring Boot",
-          "icon": "https://skillicons.dev/icons?i=spring"
-        },
         {
           "name": "PostgreSQL",
           "icon": "https://skillicons.dev/icons?i=postgres"
@@ -197,18 +230,61 @@
         {
           "name": "MongoDB",
           "icon": "https://skillicons.dev/icons?i=mongodb"
+        },
+        {
+          "name": "Keycloak",
+          "icon": "https://cdn.simpleicons.org/keycloak/4D4D4D"
+        },
+        {
+          "name": "OAuth2 / OIDC",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-lock.svg"
+        },
+        {
+          "name": "JWT",
+          "icon": "https://cdn.simpleicons.org/jsonwebtokens/000000"
+        },
+        {
+          "name": "RBAC",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/person-lock.svg"
         }
       ]
     },
 
     {
       "title": {
-        "en": "Tools & Platforms",
-        "fr": "Outils & plateformes",
-        "ar": "الأدوات والمنصات"
+        "en": "AI & Integration",
+        "fr": "IA & Intégration",
+        "ar": "الذكاء الاصطناعي والتكامل"
       },
 
       "items": [
+        {
+          "name": "MCP",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/robot.svg"
+        },
+        {
+          "name": "AI Integration",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/stars.svg"
+        },
+        {
+          "name": "Machine Learning",
+          "icon": "https://skillicons.dev/icons?i=python"
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "en": "DevOps & Tools",
+        "fr": "DevOps & Outils",
+        "ar": "DevOps والأدوات"
+      },
+
+      "items": [
+        {
+          "name": "Docker",
+          "icon": "https://skillicons.dev/icons?i=docker"
+        },
         {
           "name": "Git",
           "icon": "https://skillicons.dev/icons?i=git"
@@ -222,8 +298,32 @@
           "icon": "https://skillicons.dev/icons?i=gitlab"
         },
         {
-          "name": "Docker",
-          "icon": "https://skillicons.dev/icons?i=docker"
+          "name": "CI/CD",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/gear-wide-connected.svg"
+        },
+        {
+          "name": "Prometheus",
+          "icon": "https://cdn.simpleicons.org/prometheus/E6522C"
+        },
+        {
+          "name": "Grafana",
+          "icon": "https://cdn.simpleicons.org/grafana/F46800"
+        },
+        {
+          "name": "MinIO",
+          "icon": "https://cdn.simpleicons.org/minio/C72E49"
+        },
+        {
+          "name": "Jira",
+          "icon": "https://cdn.simpleicons.org/jira/0052CC"
+        },
+        {
+          "name": "Postman",
+          "icon": "https://skillicons.dev/icons?i=postman"
+        },
+        {
+          "name": "Alfresco",
+          "icon": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/file-earmark-text.svg"
         },
         {
           "name": "IntelliJ IDEA",
@@ -232,14 +332,6 @@
         {
           "name": "VS Code",
           "icon": "https://skillicons.dev/icons?i=vscode"
-        },
-        {
-          "name": "Postman",
-          "icon": "https://skillicons.dev/icons?i=postman"
-        },
-        {
-          "name": "Keycloak",
-          "icon": "https://cdn.simpleicons.org/keycloak/4D4D4D"
         }
       ]
     },
