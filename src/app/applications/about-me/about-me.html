@@ -1,0 +1,487 @@
+<app-xp-explorer
+  [title]="'ABOUT.TITLE' | translate"
+  [path]="'ABOUT.TITLE' | translate"
+  (closed)="close()"
+>
+
+  <!-- =================================================
+       LEFT SIDEBAR
+  ================================================== -->
+
+  <div
+    explorer-sidebar
+    class="about-sidebar"
+  >
+
+    <!-- =================================================
+         ABOUT ME TASKS
+    ================================================== -->
+
+    <section class="task-box">
+
+      <div class="task-box-title">
+
+        <span>
+          {{ 'ABOUT.TASKS' | translate }}
+        </span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              aboutTasksOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleAboutTasks()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!aboutTasksOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+
+      </div>
+
+
+      @if (aboutTasksOpen()) {
+        <div class="task-box-content">
+
+          <div class="task-link">
+            <span class="task-link-icon">
+              👤
+            </span>
+
+            <span>
+              {{ 'ABOUT.VIEW_PROFILE' | translate }}
+            </span>
+          </div>
+
+        </div>
+      }
+
+    </section>
+
+
+    <!-- =================================================
+         OTHER PLACES
+    ================================================== -->
+
+    <section class="task-box">
+
+      <div class="task-box-title">
+
+        <span>
+          {{ 'ABOUT.OTHER_PLACES' | translate }}
+        </span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              otherPlacesOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleOtherPlaces()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!otherPlacesOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+
+      </div>
+
+
+      @if (otherPlacesOpen()) {
+        <div class="task-box-content">
+
+          <app-xp-other-places
+            currentSection="about"
+            (navigate)="navigateTo($event)"
+          />
+
+        </div>
+      }
+
+    </section>
+
+
+    <!-- =================================================
+         DETAILS
+    ================================================== -->
+
+    <section class="task-box">
+
+      <div class="task-box-title">
+
+        <span>
+          {{ 'ABOUT.DETAILS' | translate }}
+        </span>
+
+        <button
+          type="button"
+          class="collapse-button"
+          [attr.title]="
+            (
+              detailsOpen()
+                ? 'SYSTEM.COLLAPSE'
+                : 'SYSTEM.EXPAND'
+            ) | translate
+          "
+          (click)="toggleDetails()"
+        >
+          <img
+            class="collapse-icon"
+            [class.inverted]="!detailsOpen()"
+            src="/assets/icons/explorer/collapse-expand.webp"
+            alt=""
+            draggable="false"
+          />
+        </button>
+
+      </div>
+
+
+      @if (detailsOpen()) {
+
+        @if (profile(); as data) {
+
+          <div class="profile-details">
+
+            <strong>
+              {{ data.name }}
+            </strong>
+
+            <span>
+              {{ text(data.title) }}
+            </span>
+
+            <span>
+              {{ text(data.location) }}
+            </span>
+
+            <span class="current-work-small">
+              {{ text(data.currentWork) }}
+            </span>
+
+
+            <div class="details-separator"></div>
+
+
+            <strong class="details-label">
+              {{ 'ABOUT.LANGUAGES' | translate }}
+            </strong>
+
+            @for (
+              language of list(data.languages);
+              track language
+            ) {
+              <span>
+                {{ language }}
+              </span>
+            }
+
+          </div>
+
+        }
+
+      }
+
+    </section>
+
+  </div>
+
+
+  <!-- =================================================
+       MAIN CONTENT
+  ================================================== -->
+
+  <div
+    explorer-content
+    class="about-content"
+    [class.rtl]="
+      languageService.currentLanguage() === 'ar'
+    "
+  >
+
+    @if (loading()) {
+
+      <div class="about-message">
+        {{ 'ABOUT.LOADING' | translate }}
+      </div>
+
+    } @else if (loadError()) {
+
+      <div class="about-message error">
+        {{ 'ABOUT.ERROR' | translate }}
+      </div>
+
+    } @else if (profile(); as data) {
+
+      <!-- =================================================
+           PROFILE HEADER
+      ================================================== -->
+
+      <section class="profile-header">
+
+        <div class="profile-avatar">
+  <img
+    src="/assets/images/profile.jpg"
+    alt="Wael Ben Youssef"
+    draggable="false"
+  />
+</div>
+
+
+        <div class="profile-heading">
+
+          <h1>
+            {{ data.name }}
+          </h1>
+
+          <div class="profile-title">
+            {{ text(data.title) }}
+          </div>
+
+          <div class="profile-location">
+            {{ text(data.location) }}
+          </div>
+
+          <div class="profile-work">
+            {{ text(data.currentWork) }}
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="xp-separator"></div>
+
+
+      <!-- =================================================
+           ABOUT ME
+      ================================================== -->
+
+      <section class="content-section">
+
+        <h2>
+          {{ 'ABOUT.ABOUT_ME' | translate }}
+        </h2>
+
+        <div class="about-text">
+
+          @for (
+            paragraph of list(data.about);
+            track $index
+          ) {
+            <p>
+              {{ paragraph }}
+            </p>
+          }
+
+        </div>
+
+      </section>
+
+
+      <div class="xp-separator"></div>
+
+
+      <!-- =================================================
+           SKILLS
+      ================================================== -->
+
+      <section class="content-section">
+
+        <h2>
+          {{ 'ABOUT.SKILLS' | translate }}
+        </h2>
+
+        <p class="section-description">
+          {{ 'ABOUT.SKILLS_DESCRIPTION' | translate }}
+        </p>
+
+
+        <div class="skill-groups">
+
+          @for (
+            group of data.skills;
+            track $index
+          ) {
+
+            <section class="skill-group">
+
+              <h3>
+                {{ text(group.title) }}
+              </h3>
+
+
+              <div class="skills-grid">
+
+                @for (
+                  skill of group.items;
+                  track skill.name
+                ) {
+
+                  <div
+                    class="skill-item"
+                    [attr.title]="skill.name"
+                  >
+
+                    <img
+                      class="skill-icon"
+                      [src]="skill.icon"
+                      [alt]="skill.name"
+                      loading="lazy"
+                      draggable="false"
+                    />
+
+                    <span>
+                      {{ skill.name }}
+                    </span>
+
+                  </div>
+
+                }
+
+              </div>
+
+            </section>
+
+          }
+
+        </div>
+
+      </section>
+
+
+      <div class="xp-separator"></div>
+
+
+      <!-- =================================================
+           INTERESTS / LIFE OUTSIDE CODE
+      ================================================== -->
+
+      <section class="content-section">
+
+        <h2>
+          {{ 'ABOUT.INTERESTS' | translate }}
+        </h2>
+
+
+        <ul class="interests-list">
+
+          @for (
+            interest of list(data.interests);
+            track interest
+          ) {
+            <li>
+              {{ interest }}
+            </li>
+          }
+
+        </ul>
+
+      </section>
+
+
+      <div class="xp-separator"></div>
+
+
+      <!-- =================================================
+           FIND ME ONLINE
+      ================================================== -->
+
+      <section class="content-section socials-section">
+
+        <h2>
+          {{ 'ABOUT.FIND_ME_ONLINE' | translate }}
+        </h2>
+
+        <p class="section-description">
+          {{ 'ABOUT.FIND_ME_DESCRIPTION' | translate }}
+        </p>
+
+
+        <div class="social-links">
+
+          @for (
+            social of data.socials;
+            track social.id
+          ) {
+
+            <a
+              class="social-link"
+              [href]="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <span class="social-icon-wrapper">
+
+                <img
+                  class="social-icon"
+                  [src]="social.icon"
+                  [alt]="social.name"
+                  loading="lazy"
+                  draggable="false"
+                />
+
+              </span>
+
+
+              <span class="social-information">
+
+                <span class="social-name">
+                  {{ social.name }}
+                </span>
+
+                <span class="social-description">
+                  {{ text(social.description) }}
+                </span>
+
+
+                @if (social.note) {
+
+                  <span class="social-note">
+                    {{ text(social.note) }}
+                  </span>
+
+                }
+
+              </span>
+
+
+              <span
+                class="external-arrow"
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+
+            </a>
+
+          }
+
+        </div>
+
+      </section>
+
+    }
+
+  </div>
+
+</app-xp-explorer>

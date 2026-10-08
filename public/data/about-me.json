@@ -1,0 +1,437 @@
+{
+  "name": "Wael Ben Youssef",
+
+  "title": {
+    "en": "Software Engineer",
+    "fr": "Ingénieur logiciel",
+    "ar": "مهندس برمجيات"
+  },
+
+  "location": {
+    "en": "Tunisia",
+    "fr": "Tunisie",
+    "ar": "تونس"
+  },
+
+  "currentWork": {
+    "en": "Currently working at DaleelTeq.",
+    "fr": "Je travaille actuellement chez DaleelTeq.",
+    "ar": "أعمل حالياً في DaleelTeq."
+  },
+
+  "about": {
+    "en": [
+      "Hi, I'm Wael. I'm a software engineer who genuinely enjoys building software, understanding how systems work and continuously improving my problem-solving skills.",
+      "My main stack is Java, Spring Boot and Angular, alongside TypeScript, PostgreSQL and Docker.",
+      "I currently work at DaleelTeq, where I contribute to the development of software applications.",
+      "I enjoy both larger applications and small technical projects. I like taking an idea, understanding the problem behind it and turning it into something that actually works.",
+      "I regularly practice algorithms and data structures through platforms such as LeetCode, Codeforces and Codolio.",
+      "My interests also extend to Machine Learning and Data Science. I publish articles about these topics on Medium.",
+      "I have also tried technologies such as JavaScript, React, Node.js, Express.js, Python, C and PHP in a few smaller projects. I do not work with them as often as my main stack, but they have given me useful exposure to different technologies and development approaches."
+    ],
+
+    "fr": [
+      "Salut, moi c'est Wael. Je suis ingénieur logiciel et j'aime réellement construire des logiciels, comprendre le fonctionnement des systèmes et améliorer continuellement mes compétences en résolution de problèmes.",
+      "Ma stack principale est Java, Spring Boot et Angular, accompagnée de TypeScript, PostgreSQL et Docker.",
+      "Je travaille actuellement chez DaleelTeq, où je contribue au développement d'applications logicielles.",
+      "J'aime aussi bien travailler sur de grandes applications que créer de petits projets techniques. J'aime partir d'une idée, comprendre le problème et la transformer en quelque chose qui fonctionne réellement.",
+      "Je pratique régulièrement les algorithmes et les structures de données sur des plateformes comme LeetCode, Codeforces et Codolio.",
+      "Mes centres d'intérêt s'étendent également au Machine Learning et à la Data Science. Je publie des articles sur ces sujets sur Medium.",
+      "J'ai également essayé des technologies comme JavaScript, React, Node.js, Express.js, Python, C et PHP dans quelques petits projets. Je ne travaille pas avec elles aussi régulièrement qu'avec ma stack principale, mais elles m'ont permis de découvrir différentes technologies et approches de développement."
+    ],
+
+    "ar": [
+      "مرحباً، أنا وائل. أنا مهندس برمجيات أستمتع فعلاً ببناء البرمجيات وفهم كيفية عمل الأنظمة وتطوير مهاراتي باستمرار في حل المشكلات.",
+      "أعمل بشكل أساسي باستخدام Java وSpring Boot وAngular إلى جانب TypeScript وPostgreSQL وDocker.",
+      "أعمل حالياً في DaleelTeq حيث أساهم في تطوير التطبيقات البرمجية.",
+      "أستمتع بالعمل على التطبيقات الكبيرة وكذلك ببناء مشاريع تقنية صغيرة. أحب البدء بفكرة وفهم المشكلة ثم تحويلها إلى برنامج يعمل فعلياً.",
+      "أتدرب باستمرار على الخوارزميات وهياكل البيانات من خلال منصات مثل LeetCode وCodeforces وCodolio.",
+      "كما تشمل اهتماماتي تعلم الآلة وعلوم البيانات، وأنشر مقالات حول هذه المواضيع على Medium.",
+      "جربت أيضاً تقنيات مثل JavaScript وReact وNode.js وExpress.js وPython وC وPHP في بعض المشاريع الصغيرة. لا أستخدم هذه التقنيات بنفس كثافة تقنياتي الأساسية، لكنها منحتني خبرة مفيدة مع تقنيات وأساليب تطوير مختلفة."
+    ]
+  },
+
+  "interests": {
+    "en": [
+      "I love problem solving and figuring out how to turn difficult problems into simple solutions.",
+      "I enjoy going to the gym and staying active.",
+      "Spending time with my family and friends is important to me.",
+      "I enjoy continuously learning new things about technology and software engineering.",
+      "I like practicing algorithms and Data Structures & Algorithms problems.",
+      "I used to play League of Legends quite a lot. I mainly played Top Lane and my mains were Renekton and Yorick.",
+      "I enjoy learning about AI, Machine Learning and Data Science."
+    ],
+
+    "fr": [
+      "J'adore résoudre des problèmes et chercher comment transformer des problèmes difficiles en solutions simples.",
+      "J'aime aller à la salle de sport et rester actif.",
+      "Passer du temps avec ma famille et mes amis est important pour moi.",
+      "J'aime apprendre continuellement de nouvelles choses sur la technologie et le génie logiciel.",
+      "J'aime pratiquer les algorithmes et les problèmes de structures de données.",
+      "Je jouais beaucoup à League of Legends. Je jouais principalement Top Lane et mes champions principaux étaient Renekton et Yorick.",
+      "J'aime apprendre davantage sur l'IA, le Machine Learning et la Data Science."
+    ],
+
+    "ar": [
+      "أحب حل المشكلات وتحويل المشاكل الصعبة إلى حلول بسيطة.",
+      "أحب الذهاب إلى النادي الرياضي والمحافظة على نشاطي.",
+      "قضاء الوقت مع عائلتي وأصدقائي مهم جداً بالنسبة لي.",
+      "أستمتع دائماً بتعلم أشياء جديدة حول التكنولوجيا وهندسة البرمجيات.",
+      "أحب التدرب على الخوارزميات وهياكل البيانات وحل المسائل البرمجية.",
+      "كنت ألعب League of Legends كثيراً، وكنت ألعب غالباً في Top Lane وكانت شخصياتي الرئيسية Renekton وYorick.",
+      "أحب التعلم عن الذكاء الاصطناعي وتعلم الآلة وعلوم البيانات."
+    ]
+  },
+
+  "languages": {
+    "en": [
+      "Arabic",
+      "French",
+      "English"
+    ],
+
+    "fr": [
+      "Arabe",
+      "Français",
+      "Anglais"
+    ],
+
+    "ar": [
+      "العربية",
+      "الفرنسية",
+      "الإنجليزية"
+    ]
+  },
+
+  "skills": [
+    {
+      "title": {
+        "en": "Primary Stack",
+        "fr": "Stack principale",
+        "ar": "التقنيات الأساسية"
+      },
+
+      "items": [
+        {
+          "name": "Java",
+          "icon": "https://skillicons.dev/icons?i=java"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "https://skillicons.dev/icons?i=spring"
+        },
+        {
+          "name": "Angular",
+          "icon": "https://skillicons.dev/icons?i=angular"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "https://skillicons.dev/icons?i=ts"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "https://skillicons.dev/icons?i=postgres"
+        },
+        {
+          "name": "Docker",
+          "icon": "https://skillicons.dev/icons?i=docker"
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "en": "Frontend",
+        "fr": "Frontend",
+        "ar": "الواجهة الأمامية"
+      },
+
+      "items": [
+        {
+          "name": "Angular",
+          "icon": "https://skillicons.dev/icons?i=angular"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "https://skillicons.dev/icons?i=ts"
+        },
+        {
+          "name": "HTML5",
+          "icon": "https://skillicons.dev/icons?i=html"
+        },
+        {
+          "name": "CSS3",
+          "icon": "https://skillicons.dev/icons?i=css"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "https://skillicons.dev/icons?i=tailwind"
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "en": "Backend & Data",
+        "fr": "Backend & Data",
+        "ar": "الخلفية والبيانات"
+      },
+
+      "items": [
+        {
+          "name": "Java",
+          "icon": "https://skillicons.dev/icons?i=java"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "https://skillicons.dev/icons?i=spring"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "https://skillicons.dev/icons?i=postgres"
+        },
+        {
+          "name": "MySQL",
+          "icon": "https://skillicons.dev/icons?i=mysql"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "https://skillicons.dev/icons?i=mongodb"
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "en": "Tools & Platforms",
+        "fr": "Outils & plateformes",
+        "ar": "الأدوات والمنصات"
+      },
+
+      "items": [
+        {
+          "name": "Git",
+          "icon": "https://skillicons.dev/icons?i=git"
+        },
+        {
+          "name": "GitHub",
+          "icon": "https://skillicons.dev/icons?i=github"
+        },
+        {
+          "name": "GitLab",
+          "icon": "https://skillicons.dev/icons?i=gitlab"
+        },
+        {
+          "name": "Docker",
+          "icon": "https://skillicons.dev/icons?i=docker"
+        },
+        {
+          "name": "IntelliJ IDEA",
+          "icon": "https://skillicons.dev/icons?i=idea"
+        },
+        {
+          "name": "VS Code",
+          "icon": "https://skillicons.dev/icons?i=vscode"
+        },
+        {
+          "name": "Postman",
+          "icon": "https://skillicons.dev/icons?i=postman"
+        },
+        {
+          "name": "Keycloak",
+          "icon": "https://cdn.simpleicons.org/keycloak/4D4D4D"
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "en": "Additional Technologies",
+        "fr": "Technologies supplémentaires",
+        "ar": "تقنيات إضافية"
+      },
+
+      "items": [
+        {
+          "name": "JavaScript",
+          "icon": "https://skillicons.dev/icons?i=js"
+        },
+        {
+          "name": "React",
+          "icon": "https://skillicons.dev/icons?i=react"
+        },
+        {
+          "name": "Node.js",
+          "icon": "https://skillicons.dev/icons?i=nodejs"
+        },
+        {
+          "name": "Express.js",
+          "icon": "https://skillicons.dev/icons?i=express"
+        },
+        {
+          "name": "Python",
+          "icon": "https://skillicons.dev/icons?i=python"
+        },
+        {
+          "name": "C",
+          "icon": "https://skillicons.dev/icons?i=c"
+        },
+        {
+          "name": "PHP",
+          "icon": "https://skillicons.dev/icons?i=php"
+        }
+      ]
+    }
+  ],
+
+  "socials": [
+    {
+      "id": "github",
+      "name": "GitHub",
+      "icon": "https://cdn.simpleicons.org/github/181717",
+      "url": "https://github.com/waelby99",
+
+      "description": {
+        "en": "Projects, experiments and source code",
+        "fr": "Projets, expérimentations et code source",
+        "ar": "المشاريع والتجارب والكود المصدري"
+      }
+    },
+
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg",
+      "url": "https://www.linkedin.com/in/wael-ben-youssef-8939193aa/?isSelfProfile=true",
+
+      "description": {
+        "en": "My professional profile and network",
+        "fr": "Mon profil professionnel et mon réseau",
+        "ar": "ملفي المهني وشبكة علاقاتي"
+      }
+    },
+
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "icon": "https://cdn.simpleicons.org/instagram/E4405F",
+      "url": "https://www.instagram.com/wael.ben.youssef_/",
+
+      "description": {
+        "en": "Follow me on Instagram",
+        "fr": "Retrouvez-moi sur Instagram",
+        "ar": "تابعني على Instagram"
+      }
+    },
+
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "icon": "https://cdn.simpleicons.org/facebook/0866FF",
+      "url": "https://www.facebook.com/wael.benyoussef3",
+
+      "description": {
+        "en": "Find me on Facebook",
+        "fr": "Retrouvez-moi sur Facebook",
+        "ar": "تجدني على Facebook"
+      }
+    },
+
+    {
+      "id": "x",
+      "name": "X",
+      "icon": "https://cdn.simpleicons.org/x/000000",
+      "url": "https://x.com/wael_ben24022",
+
+      "description": {
+        "en": "Follow me on X",
+        "fr": "Suivez-moi sur X",
+        "ar": "تابعني على X"
+      }
+    },
+
+    {
+      "id": "email",
+      "name": "Email",
+      "icon": "https://cdn.simpleicons.org/gmail/EA4335",
+      "url": "mailto:waelbenyoussef19991@gmail.com",
+
+      "description": {
+        "en": "waelbenyoussef19991@gmail.com",
+        "fr": "waelbenyoussef19991@gmail.com",
+        "ar": "waelbenyoussef19991@gmail.com"
+      }
+    },
+
+    {
+      "id": "leetcode",
+      "name": "LeetCode",
+      "icon": "https://cdn.simpleicons.org/leetcode/FFA116",
+      "url": "https://leetcode.com/u/waelby99/",
+
+      "description": {
+        "en": "Algorithms and data-structure practice",
+        "fr": "Pratique des algorithmes et structures de données",
+        "ar": "التدرب على الخوارزميات وهياكل البيانات"
+      }
+    },
+
+    {
+      "id": "codeforces",
+      "name": "Codeforces",
+      "icon": "https://cdn.simpleicons.org/codeforces/1F8ACB",
+      "url": "https://codeforces.com/profile/waelby99",
+
+      "description": {
+        "en": "Competitive programming profile",
+        "fr": "Profil de programmation compétitive",
+        "ar": "حساب البرمجة التنافسية"
+      }
+    },
+
+    {
+      "id": "codolio",
+      "name": "Codolio",
+      "icon": "https://www.google.com/s2/favicons?domain=codolio.com&sz=64",
+      "url": "https://codolio.com/profile/waelby99",
+
+      "description": {
+        "en": "Coding activity and problem-solving progress",
+        "fr": "Activité de programmation et progression en résolution de problèmes",
+        "ar": "نشاط البرمجة والتقدم في حل المشكلات"
+      }
+    },
+
+    {
+      "id": "medium",
+      "name": "Medium",
+      "icon": "https://cdn.simpleicons.org/medium/000000",
+      "url": "https://medium.com/@waelbenyoussef19991",
+
+      "description": {
+        "en": "My Machine Learning and Data Science articles",
+        "fr": "Mes articles sur le Machine Learning et la Data Science",
+        "ar": "مقالاتي حول تعلم الآلة وعلوم البيانات"
+      }
+    },
+
+    {
+      "id": "magazine-portfolio",
+      "name": "Magazine Portfolio",
+      "icon": "https://cdn.simpleicons.org/netlify/00C7B7",
+      "url": "https://wael-ben-youssef.netlify.app/",
+
+      "description": {
+        "en": "A clean and easy-to-read magazine-style version of my portfolio",
+        "fr": "Une version simple et facile à lire de mon portfolio au style magazine",
+        "ar": "نسخة بسيطة وسهلة القراءة من البورتفوليو بتصميم يشبه المجلة"
+      },
+
+      "note": {
+        "en": "English only",
+        "fr": "Disponible uniquement en anglais",
+        "ar": "متوفر باللغة الإنجليزية فقط"
+      }
+    }
+  ]
+}

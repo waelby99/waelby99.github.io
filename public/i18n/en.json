@@ -36,7 +36,8 @@
     "CERTIFICATIONS": "Certifications",
     "PROFESSIONAL_EXPERIENCE": "Professional Experience",
     "EXPAND": "Expand",
-    "COLLAPSE": "Collapse"
+    "COLLAPSE": "Collapse",
+    "ABOUT_ME": "About Me"
   },
   "LOGIN": {
     "WELCOME": "Welcome",
@@ -76,5 +77,27 @@
     "EMPTY": "No education entries available.",
     "AVERAGE": "Average",
     "ESTIMATED_GPA": "Estimated GPA"
-  }
+  },
+ "ABOUT": {
+  "TITLE": "About Me",
+  "TASKS": "About Me Tasks",
+  "VIEW_PROFILE": "View my profile",
+  "OTHER_PLACES": "Other Places",
+  "DETAILS": "Details",
+  "LANGUAGES": "Languages",
+
+  "ABOUT_ME": "About Me",
+
+  "SKILLS": "Skills & Technologies",
+  "SKILLS_DESCRIPTION": "Technologies and tools I have worked with.",
+
+  "INTERESTS": "Outside the code",
+
+  "FIND_ME_ONLINE": "Find me online",
+  "FIND_ME_DESCRIPTION": "My social profiles, coding activity, articles and other versions of my portfolio.",
+
+  "LOADING": "Loading profile...",
+  "ERROR": "The profile could not be loaded."
+}
+  
 }

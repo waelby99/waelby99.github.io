@@ -50,11 +50,26 @@
   ================================================== -->
 
   <div class="windows-area">
+
+    <!-- ABOUT ME -->
+
+    @if (aboutMeOpen()) {
+      <app-about-me
+        (closed)="closeAboutMe()"
+        (navigate)="openPortfolioSection($event)"
+      />
+    }
+
+
+    <!-- EDUCATION -->
+
     @if (educationOpen()) {
       <app-education
         (closed)="closeEducation()"
+        (navigate)="openPortfolioSection($event)"
       />
     }
+
   </div>
 
 
@@ -69,39 +84,51 @@
       (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
     >
       <div class="title-bar">
+
         <div class="title-bar-text">
           C:\WINDOWS\system32\cmd.exe
         </div>
 
+
         <div class="title-bar-controls">
+
           <button
             type="button"
             aria-label="Minimize"
           ></button>
+
 
           <button
             type="button"
             aria-label="Maximize"
           ></button>
 
+
           <button
             type="button"
             aria-label="Close"
             (click)="closeCommandPrompt()"
           ></button>
+
         </div>
+
       </div>
 
+
       <div class="window-body cmd-body">
+
         <div>
           Microsoft Windows XP [Version 5.1.2600]
         </div>
+
 
         <div>
           (C) Copyright 1985-2001 Microsoft Corp.
         </div>
 
+
         <br />
+
 
         <div>
           C:\Documents and Settings\Wael&gt;
@@ -110,7 +137,9 @@
             _
           </span>
         </div>
+
       </div>
+
     </div>
   }
 
@@ -139,6 +168,10 @@
       (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
     >
 
+      <!-- =================================================
+           REFRESH
+      ================================================== -->
+
       <button
         class="context-item"
         type="button"
@@ -155,6 +188,10 @@
         </span>
       </button>
 
+
+      <!-- =================================================
+           SORT BY
+      ================================================== -->
 
       <div
         class="context-submenu-wrapper"
@@ -178,8 +215,10 @@
           </span>
         </button>
 
+
         @if (activeSubmenu() === 'sort') {
           <div class="context-submenu">
+
             <button
               type="button"
               (click)="sortIconsByName()"
@@ -191,6 +230,7 @@
               </span>
             </button>
 
+
             <button
               type="button"
               (click)="sortIconsByType()"
@@ -201,13 +241,19 @@
                 {{ 'SYSTEM.TYPE' | translate }}
               </span>
             </button>
+
           </div>
         }
+
       </div>
 
 
       <div class="context-separator"></div>
 
+
+      <!-- =================================================
+           OPEN COMMAND PROMPT
+      ================================================== -->
 
       <button
         class="context-item"
@@ -234,6 +280,10 @@
       <div class="context-separator"></div>
 
 
+      <!-- =================================================
+           NEW
+      ================================================== -->
+
       <div
         class="context-submenu-wrapper"
         (mouseenter)="setSubmenu('new')"
@@ -256,8 +306,12 @@
           </span>
         </button>
 
+
         @if (activeSubmenu() === 'new') {
           <div class="context-submenu">
+
+            <!-- FOLDER -->
+
             <button
               type="button"
               (click)="createFolder()"
@@ -274,6 +328,9 @@
               </span>
             </button>
 
+
+            <!-- TEXT DOCUMENT -->
+
             <button
               type="button"
               (click)="createTextDocument()"
@@ -289,13 +346,19 @@
                 {{ 'SYSTEM.NEW_TEXT_DOCUMENT' | translate }}
               </span>
             </button>
+
           </div>
         }
+
       </div>
 
 
       <div class="context-separator"></div>
 
+
+      <!-- =================================================
+           FULLSCREEN
+      ================================================== -->
 
       <button
         class="context-item"
@@ -314,6 +377,10 @@
       </button>
 
 
+      <!-- =================================================
+           PROPERTIES
+      ================================================== -->
+
       <button
         class="context-item"
         type="button"
@@ -329,6 +396,7 @@
           {{ 'SYSTEM.PROPERTIES' | translate }}
         </span>
       </button>
+
     </div>
   }
 
@@ -342,26 +410,40 @@
       class="startup-notice-overlay"
       (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
     >
+
       <div
         class="window startup-notice"
         (click)="$event.stopPropagation()"
       >
+
+        <!-- TITLE BAR -->
+
         <div class="title-bar">
+
           <div class="title-bar-text">
             Portfolio Update
           </div>
 
+
           <div class="title-bar-controls">
+
             <button
               type="button"
               aria-label="Close"
               (click)="closeStartupNotice()"
             ></button>
+
           </div>
+
         </div>
 
+
+        <!-- BODY -->
+
         <div class="window-body startup-notice-body">
+
           <div class="startup-notice-content">
+
             <div
               class="startup-notice-icon"
               aria-hidden="true"
@@ -369,10 +451,13 @@
               i
             </div>
 
+
             <div class="startup-notice-message">
+
               <p class="startup-notice-heading">
                 Welcome!
               </p>
+
 
               <p>
                 This portfolio is still under active
@@ -380,14 +465,19 @@
                 features are still being added or refined.
               </p>
 
+
               <p>
                 You're viewing an early public version —
                 feel free to explore!
               </p>
+
             </div>
+
           </div>
 
+
           <div class="startup-notice-actions">
+
             <button
               type="button"
               autofocus
@@ -395,9 +485,13 @@
             >
               OK
             </button>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
   }
 
