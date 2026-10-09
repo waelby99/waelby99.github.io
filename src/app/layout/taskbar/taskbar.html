@@ -1,16 +1,8 @@
 <div
   class="taskbar"
-
-  (click)="
-    $event.stopPropagation()
-  "
-
-  (contextmenu)="
-    $event.preventDefault();
-    $event.stopPropagation()
-  "
+  (click)="$event.stopPropagation()"
+  (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
 >
-
 
   <!-- =================================================
        START BUTTON
@@ -18,28 +10,17 @@
 
   <button
     class="start-button"
-
     type="button"
   >
-
     <img
       src="/assets/logos/windows-xp-flag.png"
-
       alt=""
-
       class="start-logo"
     />
 
-
     <span dir="auto">
-
-      {{
-        'SYSTEM.START'
-          | translate
-      }}
-
+      {{ 'SYSTEM.START' | translate }}
     </span>
-
   </button>
 
 
@@ -48,11 +29,52 @@
   ================================================== -->
 
   <div class="taskbar-applications">
+
+    @for (
+      window of windowManager.windows();
+      track window.id
+    ) {
+      <button
+        type="button"
+        class="taskbar-app-button"
+        [class.active]="
+          window.active &&
+          !window.minimized
+        "
+        [class.minimized]="window.minimized"
+        [attr.title]="
+          window.translateTitle
+            ? (window.title | translate)
+            : window.title
+        "
+        (click)="
+          windowManager.toggleFromTaskbar(
+            window.id
+          )
+        "
+      >
+        <img
+          class="taskbar-app-icon"
+          [src]="window.icon"
+          alt=""
+          draggable="false"
+        />
+
+        <span class="taskbar-app-title">
+          {{
+            window.translateTitle
+              ? (window.title | translate)
+              : window.title
+          }}
+        </span>
+      </button>
+    }
+
   </div>
 
 
   <!-- =================================================
-       SYSTEM TRAY COMPONENT
+       SYSTEM TRAY
   ================================================== -->
 
   <app-system-tray />
