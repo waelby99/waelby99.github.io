@@ -1,11 +1,11 @@
 <div
   class="explorer-window"
   [class.maximized]="maximized()"
-  [class.minimized]="minimized()"
   [style.left.px]="left()"
   [style.top.px]="top()"
   [style.width.px]="width()"
   [style.height.px]="height()"
+  (pointerdown)="focusWindow()"
   (click)="$event.stopPropagation()"
   (contextmenu)="$event.stopPropagation()"
 >
@@ -21,6 +21,7 @@
   >
 
     <div class="title-left">
+
       <img
         class="title-icon"
         [src]="icon"
@@ -31,6 +32,7 @@
       <span>
         {{ title }}
       </span>
+
     </div>
 
 
@@ -113,250 +115,243 @@
 
 
   <!-- =================================================
-       REST OF WINDOW
+       MENU
   ================================================== -->
 
-  @if (!minimized()) {
+  <nav class="menu-bar">
 
-    <!-- MENU -->
+    <button type="button">
+      File
+    </button>
 
-    <nav class="menu-bar">
-      <button type="button">
-        File
-      </button>
+    <button type="button">
+      Edit
+    </button>
 
-      <button type="button">
-        Edit
-      </button>
+    <button type="button">
+      View
+    </button>
 
-      <button type="button">
-        View
-      </button>
+    <button type="button">
+      Favorites
+    </button>
 
-      <button type="button">
-        Favorites
-      </button>
+    <button type="button">
+      Tools
+    </button>
 
-      <button type="button">
-        Tools
-      </button>
+    <button type="button">
+      Help
+    </button>
 
-      <button type="button">
-        Help
-      </button>
-    </nav>
+  </nav>
 
 
-    <!-- TOOLBAR -->
+  <!-- =================================================
+       TOOLBAR
+  ================================================== -->
 
-    <div class="toolbar">
+  <div class="toolbar">
 
-      <!-- BACK -->
+    <button
+      type="button"
+      class="toolbar-button navigation-button"
+      title="Back"
+      aria-label="Back"
+      disabled
+    >
+      <img
+        class="toolbar-icon navigation-icon"
+        src="/assets/icons/explorer/back.png"
+        alt=""
+        draggable="false"
+      />
 
-      <button
-        type="button"
-        class="toolbar-button navigation-button"
-        title="Back"
-        aria-label="Back"
-        disabled
-      >
-        <img
-          class="toolbar-icon navigation-icon"
-          src="/assets/icons/explorer/back.png"
-          alt=""
-          draggable="false"
-        />
-
-        <span>
-          Back
-        </span>
-
-        <span class="toolbar-arrow">
-          ▼
-        </span>
-      </button>
-
-
-      <!-- FORWARD -->
-
-      <button
-        type="button"
-        class="toolbar-button navigation-button icon-only"
-        title="Forward"
-        aria-label="Forward"
-        disabled
-      >
-        <img
-          class="toolbar-icon navigation-icon"
-          src="/assets/icons/explorer/forward.png"
-          alt=""
-          draggable="false"
-        />
-      </button>
-
-
-      <div class="toolbar-separator"></div>
-
-
-      <!-- SEARCH -->
-
-      <button
-        type="button"
-        class="toolbar-button"
-        title="Search"
-        aria-label="Search"
-      >
-        <img
-          class="toolbar-icon"
-          src="/assets/icons/explorer/search.png"
-          alt=""
-          draggable="false"
-        />
-
-        <span>
-          Search
-        </span>
-      </button>
-
-
-      <!-- FOLDERS -->
-
-      <button
-        type="button"
-        class="toolbar-button"
-        title="Folders"
-        aria-label="Folders"
-      >
-        <img
-          class="toolbar-icon"
-          src="/assets/icons/explorer/folders.png"
-          alt=""
-          draggable="false"
-        />
-
-        <span>
-          Folders
-        </span>
-      </button>
-
-
-      <div class="toolbar-separator"></div>
-
-
-      <!-- VIEWS -->
-
-      <button
-        type="button"
-        class="toolbar-button views-button"
-        title="Views"
-        aria-label="Views"
-      >
-        <img
-          class="toolbar-icon views-icon"
-          src="/assets/icons/explorer/views.png"
-          alt=""
-          draggable="false"
-        />
-
-        <span class="toolbar-arrow">
-          ▼
-        </span>
-      </button>
-
-    </div>
-
-
-    <!-- ADDRESS -->
-
-    <div class="address-bar">
-
-      <span class="address-label">
-        Address
+      <span>
+        Back
       </span>
 
-      <div class="address-field">
+      <span class="toolbar-arrow">
+        ▼
+      </span>
+    </button>
 
-        <img
-          [src]="icon"
-          alt=""
-          draggable="false"
-        />
 
-        <span>
-          {{ path }}
-        </span>
+    <button
+      type="button"
+      class="toolbar-button navigation-button icon-only"
+      title="Forward"
+      aria-label="Forward"
+      disabled
+    >
+      <img
+        class="toolbar-icon navigation-icon"
+        src="/assets/icons/explorer/forward.png"
+        alt=""
+        draggable="false"
+      />
+    </button>
 
-      </div>
+
+    <div class="toolbar-separator"></div>
+
+
+    <button
+      type="button"
+      class="toolbar-button"
+      title="Search"
+      aria-label="Search"
+    >
+      <img
+        class="toolbar-icon"
+        src="/assets/icons/explorer/search.png"
+        alt=""
+        draggable="false"
+      />
+
+      <span>
+        Search
+      </span>
+    </button>
+
+
+    <button
+      type="button"
+      class="toolbar-button"
+      title="Folders"
+      aria-label="Folders"
+    >
+      <img
+        class="toolbar-icon"
+        src="/assets/icons/explorer/folders.png"
+        alt=""
+        draggable="false"
+      />
+
+      <span>
+        Folders
+      </span>
+    </button>
+
+
+    <div class="toolbar-separator"></div>
+
+
+    <button
+      type="button"
+      class="toolbar-button views-button"
+      title="Views"
+      aria-label="Views"
+    >
+      <img
+        class="toolbar-icon views-icon"
+        src="/assets/icons/explorer/views.png"
+        alt=""
+        draggable="false"
+      />
+
+      <span class="toolbar-arrow">
+        ▼
+      </span>
+    </button>
+
+  </div>
+
+
+  <!-- =================================================
+       ADDRESS BAR
+  ================================================== -->
+
+  <div class="address-bar">
+
+    <span class="address-label">
+      Address
+    </span>
+
+    <div class="address-field">
+
+      <img
+        [src]="icon"
+        alt=""
+        draggable="false"
+      />
+
+      <span>
+        {{ path }}
+      </span>
 
     </div>
 
-
-    <!-- CONTENT -->
-
-    <div class="explorer-body">
-
-      <aside class="explorer-sidebar">
-        <ng-content
-          select="[explorer-sidebar]"
-        ></ng-content>
-      </aside>
-
-      <main class="explorer-content">
-        <ng-content
-          select="[explorer-content]"
-        ></ng-content>
-      </main>
-
-    </div>
+  </div>
 
 
-    <!-- =================================================
-         RESIZE HANDLES
-    ================================================== -->
+  <!-- =================================================
+       CONTENT
+  ================================================== -->
 
-    @if (!maximized()) {
+  <div class="explorer-body">
 
-      <div
-        class="resize-handle resize-n"
-        (pointerdown)="startResize($event, 'n')"
-      ></div>
+    <aside class="explorer-sidebar">
+      <ng-content
+        select="[explorer-sidebar]"
+      ></ng-content>
+    </aside>
 
-      <div
-        class="resize-handle resize-s"
-        (pointerdown)="startResize($event, 's')"
-      ></div>
 
-      <div
-        class="resize-handle resize-e"
-        (pointerdown)="startResize($event, 'e')"
-      ></div>
+    <main class="explorer-content">
+      <ng-content
+        select="[explorer-content]"
+      ></ng-content>
+    </main>
 
-      <div
-        class="resize-handle resize-w"
-        (pointerdown)="startResize($event, 'w')"
-      ></div>
+  </div>
 
-      <div
-        class="resize-handle resize-ne"
-        (pointerdown)="startResize($event, 'ne')"
-      ></div>
 
-      <div
-        class="resize-handle resize-nw"
-        (pointerdown)="startResize($event, 'nw')"
-      ></div>
+  <!-- =================================================
+       RESIZE HANDLES
+  ================================================== -->
 
-      <div
-        class="resize-handle resize-se"
-        (pointerdown)="startResize($event, 'se')"
-      ></div>
+  @if (!maximized()) {
 
-      <div
-        class="resize-handle resize-sw"
-        (pointerdown)="startResize($event, 'sw')"
-      ></div>
+    <div
+      class="resize-handle resize-n"
+      (pointerdown)="startResize($event, 'n')"
+    ></div>
 
-    }
+    <div
+      class="resize-handle resize-s"
+      (pointerdown)="startResize($event, 's')"
+    ></div>
+
+    <div
+      class="resize-handle resize-e"
+      (pointerdown)="startResize($event, 'e')"
+    ></div>
+
+    <div
+      class="resize-handle resize-w"
+      (pointerdown)="startResize($event, 'w')"
+    ></div>
+
+    <div
+      class="resize-handle resize-ne"
+      (pointerdown)="startResize($event, 'ne')"
+    ></div>
+
+    <div
+      class="resize-handle resize-nw"
+      (pointerdown)="startResize($event, 'nw')"
+    ></div>
+
+    <div
+      class="resize-handle resize-se"
+      (pointerdown)="startResize($event, 'se')"
+    ></div>
+
+    <div
+      class="resize-handle resize-sw"
+      (pointerdown)="startResize($event, 'sw')"
+    ></div>
 
   }
 

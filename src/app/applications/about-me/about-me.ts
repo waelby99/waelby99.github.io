@@ -1,17 +1,24 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   inject,
   signal
 } from '@angular/core';
 
-import { TranslatePipe } from '@ngx-translate/core';
+import {
+  TranslatePipe
+} from '@ngx-translate/core';
 
-import { LanguageService } from '../../core/services/language.service';
+import {
+  LanguageService
+} from '../../core/services/language.service';
 
-import { XpExplorer } from '../../shared/components/xp-explorer/xp-explorer';
+import {
+  XpExplorer
+} from '../../shared/components/xp-explorer/xp-explorer';
 
 import {
   PortfolioSection,
@@ -38,7 +45,9 @@ interface SocialLink {
   name: string;
   icon: string;
   url: string;
+
   description: LocalizedText;
+
   note?: LocalizedText;
 }
 
@@ -57,13 +66,17 @@ interface SkillGroup {
 
 interface AboutMeData {
   name: string;
+
   title: LocalizedText;
   location: LocalizedText;
   currentWork: LocalizedText;
+
   about: LocalizedList;
   interests: LocalizedList;
   languages: LocalizedList;
+
   skills: SkillGroup[];
+
   socials: SocialLink[];
 }
 
@@ -71,11 +84,13 @@ interface AboutMeData {
 @Component({
   selector: 'app-about-me',
   standalone: true,
+
   imports: [
     TranslatePipe,
     XpExplorer,
     XpOtherPlaces
   ],
+
   templateUrl: './about-me.html',
   styleUrl: './about-me.scss'
 })
@@ -83,10 +98,20 @@ export class AboutMe implements OnInit {
   readonly languageService =
     inject(LanguageService);
 
-  @Output() closed =
+
+  @Input({
+    required: true
+  })
+  windowId!: string;
+
+
+  @Output()
+  closed =
     new EventEmitter<void>();
 
-  @Output() navigate =
+
+  @Output()
+  navigate =
     new EventEmitter<PortfolioSection>();
 
 
@@ -115,34 +140,32 @@ export class AboutMe implements OnInit {
 
 
   private async loadProfile(): Promise<void> {
-    this.loading.set(true);
-    this.loadError.set(false);
+  this.loading.set(true);
+  this.loadError.set(false);
 
-    try {
-      const response =
-        await fetch('/data/about-me.json');
+  try {
+    const response = await fetch('/data/about-me.json');
 
-      if (!response.ok) {
-        throw new Error(
-          `Could not load About Me data: ${response.status}`
-        );
-      }
-
-      const data =
-        await response.json() as AboutMeData;
-
-      this.profile.set(data);
-    } catch (error) {
-      console.error(
-        'Failed to load About Me data:',
-        error
+    if (!response.ok) {
+      throw new Error(
+        `Could not load About Me data: ${response.status}`
       );
-
-      this.loadError.set(true);
-    } finally {
-      this.loading.set(false);
     }
+
+    const data: AboutMeData = await response.json();
+
+    this.profile.set(data);
+  } catch (error) {
+    console.error(
+      'Failed to load About Me data:',
+      error
+    );
+
+    this.loadError.set(true);
+  } finally {
+    this.loading.set(false);
   }
+}
 
 
   text(
@@ -151,7 +174,8 @@ export class AboutMe implements OnInit {
     const language =
       this.languageService.currentLanguage();
 
-    return value[language] ?? value.en;
+    return value[language] ??
+      value.en;
   }
 
 
@@ -161,7 +185,8 @@ export class AboutMe implements OnInit {
     const language =
       this.languageService.currentLanguage();
 
-    return value[language] ?? value.en;
+    return value[language] ??
+      value.en;
   }
 
 
@@ -189,7 +214,9 @@ export class AboutMe implements OnInit {
   navigateTo(
     section: PortfolioSection
   ): void {
-    this.navigate.emit(section);
+    this.navigate.emit(
+      section
+    );
   }
 
 

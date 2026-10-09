@@ -10,6 +10,12 @@ import {
   signal
 } from '@angular/core';
 
+import {
+  WindowBounds,
+  WindowManagerService
+} from '../../../core/services/window-manager';
+
+
 type ResizeDirection =
   | 'n'
   | 's'
@@ -20,12 +26,6 @@ type ResizeDirection =
   | 'se'
   | 'sw';
 
-interface WindowBounds {
-  left: number;
-  top: number;
-  width: number;
-  height: number;
-}
 
 @Component({
   selector: 'app-xp-explorer',
@@ -38,50 +38,145 @@ export class XpExplorer implements AfterViewInit {
   private readonly host =
     inject<ElementRef<HTMLElement>>(ElementRef);
 
-  @Input() title = 'Explorer';
-  @Input() path = '';
-  @Input() icon = '/assets/icons/desktop/folder.png';
+  private readonly windowManager =
+    inject(WindowManagerService);
 
-  @Output() closed = new EventEmitter<void>();
 
-  readonly left = signal(60);
-  readonly top = signal(35);
-  readonly width = signal(900);
-  readonly height = signal(560);
+  @Input({
+    required: true
+  })
+  windowId!: string;
 
-  readonly maximized = signal(false);
-  readonly minimized = signal(false);
 
-  private previousBounds?: WindowBounds;
+  @Input()
+  title = 'Explorer';
 
-  private dragging = false;
 
-  private dragStartX = 0;
-  private dragStartY = 0;
+  @Input()
+  path = '';
 
-  private dragStartLeft = 0;
-  private dragStartTop = 0;
+
+  @Input()
+  icon =
+    '/assets/icons/desktop/folder.png';
+
+
+  @Output()
+  closed =
+    new EventEmitter<void>();
+
+
+  readonly left =
+    signal(60);
+
+  readonly top =
+    signal(35);
+
+  readonly width =
+    signal(900);
+
+  readonly height =
+    signal(560);
+
+  readonly maximized =
+    signal(false);
+
+
+  private previousBounds?:
+    WindowBounds;
+
+
+  private dragging =
+    false;
+
+  private dragStartX =
+    0;
+
+  private dragStartY =
+    0;
+
+  private dragStartLeft =
+    0;
+
+  private dragStartTop =
+    0;
+
 
   private resizeDirection:
-    ResizeDirection | null = null;
+    ResizeDirection | null =
+    null;
 
-  private resizeStartX = 0;
-  private resizeStartY = 0;
+  private resizeStartX =
+    0;
+
+  private resizeStartY =
+    0;
 
   private resizeStartBounds:
-    WindowBounds | null = null;
+    WindowBounds | null =
+    null;
+
 
   private activePointerElement:
-    HTMLElement | null = null;
+    HTMLElement | null =
+    null;
 
   private activePointerId:
-    number | null = null;
+    number | null =
+    null;
+
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.setInitialBounds();
+      this.initializeWindow();
     });
   }
+
+
+  /* =====================================================
+     INITIAL STATE
+  ===================================================== */
+
+  private initializeWindow(): void {
+    const managedWindow =
+      this.windowManager.getWindow(
+        this.windowId
+      );
+
+    if (!managedWindow) {
+      this.setInitialBounds();
+      return;
+    }
+
+    this.previousBounds =
+      managedWindow.restoreBounds;
+
+    this.maximized.set(
+      managedWindow.maximized
+    );
+
+    if (
+      managedWindow.bounds &&
+      !managedWindow.maximized
+    ) {
+      this.applyBounds(
+        managedWindow.bounds
+      );
+
+      this.clampWindowToHost();
+      this.syncGeometry();
+
+      return;
+    }
+
+    if (managedWindow.maximized) {
+      this.maximizeWindow();
+      return;
+    }
+
+    this.setInitialBounds();
+  }
+
 
   private setInitialBounds(): void {
     const hostWidth =
@@ -107,56 +202,120 @@ export class XpExplorer implements AfterViewInit {
         ? 35
         : 8;
 
-    const width = Math.min(
-      960,
-      Math.max(
-        Math.min(500, hostWidth),
-        hostWidth -
+    const width =
+      Math.min(
+        960,
+        Math.max(
+          Math.min(
+            500,
+            hostWidth
+          ),
+          hostWidth -
           horizontalMargin * 2
-      )
-    );
+        )
+      );
 
-    const height = Math.min(
-      620,
-      Math.max(
-        Math.min(320, hostHeight),
-        hostHeight -
+    const height =
+      Math.min(
+        620,
+        Math.max(
+          Math.min(
+            320,
+            hostHeight
+          ),
+          hostHeight -
           verticalMargin * 2
-      )
-    );
+        )
+      );
 
-    this.width.set(
-      Math.min(width, hostWidth)
-    );
+    const managedWindow =
+      this.windowManager.getWindow(
+        this.windowId
+      );
 
-    this.height.set(
-      Math.min(height, hostHeight)
-    );
+    const cascadeOffset =
+      managedWindow?.cascadeOffset ?? 0;
 
-    this.left.set(
+    const centeredLeft =
       Math.max(
         0,
         Math.round(
           (
             hostWidth -
-            this.width()
+            width
           ) / 2
         )
-      )
-    );
+      );
 
-    this.top.set(
+    const centeredTop =
       Math.max(
         0,
         Math.round(
           (
             hostHeight -
-            this.height()
+            height
           ) / 2
+        )
+      );
+
+    this.width.set(
+      Math.min(
+        width,
+        hostWidth
+      )
+    );
+
+    this.height.set(
+      Math.min(
+        height,
+        hostHeight
+      )
+    );
+
+    this.left.set(
+      Math.min(
+        Math.max(
+          0,
+          centeredLeft +
+          cascadeOffset
+        ),
+        Math.max(
+          0,
+          hostWidth -
+          120
         )
       )
     );
+
+    this.top.set(
+      Math.min(
+        Math.max(
+          0,
+          centeredTop +
+          cascadeOffset
+        ),
+        Math.max(
+          0,
+          hostHeight -
+          29
+        )
+      )
+    );
+
+    this.syncGeometry();
   }
+
+
+  /* =====================================================
+     WINDOW MANAGER
+  ===================================================== */
+
+  focusWindow(): void {
+    this.windowManager.focus(
+      this.windowId
+    );
+  }
+
 
   close(
     event?: MouseEvent
@@ -167,16 +326,22 @@ export class XpExplorer implements AfterViewInit {
     this.closed.emit();
   }
 
+
   minimize(
     event?: MouseEvent
   ): void {
     event?.preventDefault();
     event?.stopPropagation();
 
-    this.minimized.update(
-      minimized => !minimized
+    this.windowManager.minimize(
+      this.windowId
     );
   }
+
+
+  /* =====================================================
+     MAXIMIZE / RESTORE
+  ===================================================== */
 
   toggleMaximize(
     event?: MouseEvent
@@ -184,9 +349,7 @@ export class XpExplorer implements AfterViewInit {
     event?.preventDefault();
     event?.stopPropagation();
 
-    if (this.minimized()) {
-      this.minimized.set(false);
-    }
+    this.focusWindow();
 
     if (this.maximized()) {
       this.restoreWindow();
@@ -202,6 +365,7 @@ export class XpExplorer implements AfterViewInit {
 
     this.maximizeWindow();
   }
+
 
   private maximizeWindow(): void {
     const hostWidth =
@@ -221,36 +385,41 @@ export class XpExplorer implements AfterViewInit {
       hostHeight
     );
 
-    this.maximized.set(true);
+    this.maximized.set(
+      true
+    );
+
+    this.syncGeometry();
   }
+
 
   private restoreWindow(): void {
     if (!this.previousBounds) {
-      this.maximized.set(false);
+      this.maximized.set(
+        false
+      );
+
       this.setInitialBounds();
+
       return;
     }
 
-    this.left.set(
-      this.previousBounds.left
+    this.applyBounds(
+      this.previousBounds
     );
 
-    this.top.set(
-      this.previousBounds.top
+    this.maximized.set(
+      false
     );
-
-    this.width.set(
-      this.previousBounds.width
-    );
-
-    this.height.set(
-      this.previousBounds.height
-    );
-
-    this.maximized.set(false);
 
     this.clampWindowToHost();
+    this.syncGeometry();
   }
+
+
+  /* =====================================================
+     DRAG
+  ===================================================== */
 
   startWindowDrag(
     event: PointerEvent
@@ -286,6 +455,7 @@ export class XpExplorer implements AfterViewInit {
     event.preventDefault();
     event.stopPropagation();
 
+    this.focusWindow();
     this.stopPointerInteraction();
 
     this.dragging =
@@ -314,78 +484,6 @@ export class XpExplorer implements AfterViewInit {
     );
   }
 
-  startResize(
-    event: PointerEvent,
-    direction: ResizeDirection
-  ): void {
-    if (
-      event.button !== 0 ||
-      this.maximized() ||
-      this.minimized()
-    ) {
-      return;
-    }
-
-    const handle =
-      event.currentTarget;
-
-    if (
-      !(handle instanceof HTMLElement)
-    ) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.stopPointerInteraction();
-
-    this.resizeDirection =
-      direction;
-
-    this.resizeStartX =
-      event.clientX;
-
-    this.resizeStartY =
-      event.clientY;
-
-    this.resizeStartBounds = {
-      left: this.left(),
-      top: this.top(),
-      width: this.width(),
-      height: this.height()
-    };
-
-    this.activePointerElement =
-      handle;
-
-    this.activePointerId =
-      event.pointerId;
-
-    handle.setPointerCapture(
-      event.pointerId
-    );
-  }
-
-  @HostListener(
-    'document:pointermove',
-    ['$event']
-  )
-  onPointerMove(
-    event: PointerEvent
-  ): void {
-    if (this.dragging) {
-      this.moveWindow(event);
-      return;
-    }
-
-    if (
-      this.resizeDirection &&
-      this.resizeStartBounds
-    ) {
-      this.resizeWindow(event);
-    }
-  }
 
   private moveWindow(
     event: PointerEvent
@@ -421,12 +519,6 @@ export class XpExplorer implements AfterViewInit {
       this.dragStartTop +
       deltaY;
 
-    /*
-     * Like Windows XP:
-     * window can move partially outside
-     * the screen, but some title bar stays
-     * reachable.
-     */
     const visibleHorizontal =
       120;
 
@@ -448,21 +540,23 @@ export class XpExplorer implements AfterViewInit {
       hostHeight -
       visibleTitleBar;
 
-    nextLeft = Math.max(
-      minimumLeft,
-      Math.min(
-        nextLeft,
-        maximumLeft
-      )
-    );
+    nextLeft =
+      Math.max(
+        minimumLeft,
+        Math.min(
+          nextLeft,
+          maximumLeft
+        )
+      );
 
-    nextTop = Math.max(
-      minimumTop,
-      Math.min(
-        nextTop,
-        maximumTop
-      )
-    );
+    nextTop =
+      Math.max(
+        minimumTop,
+        Math.min(
+          nextTop,
+          maximumTop
+        )
+      );
 
     this.left.set(
       Math.round(nextLeft)
@@ -471,7 +565,68 @@ export class XpExplorer implements AfterViewInit {
     this.top.set(
       Math.round(nextTop)
     );
+
+    this.syncGeometry();
   }
+
+
+  /* =====================================================
+     RESIZE
+  ===================================================== */
+
+  startResize(
+    event: PointerEvent,
+    direction: ResizeDirection
+  ): void {
+    if (
+      event.button !== 0 ||
+      this.maximized()
+    ) {
+      return;
+    }
+
+    const handle =
+      event.currentTarget;
+
+    if (
+      !(handle instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.focusWindow();
+    this.stopPointerInteraction();
+
+    this.resizeDirection =
+      direction;
+
+    this.resizeStartX =
+      event.clientX;
+
+    this.resizeStartY =
+      event.clientY;
+
+    this.resizeStartBounds = {
+      left: this.left(),
+      top: this.top(),
+      width: this.width(),
+      height: this.height()
+    };
+
+    this.activePointerElement =
+      handle;
+
+    this.activePointerId =
+      event.pointerId;
+
+    handle.setPointerCapture(
+      event.pointerId
+    );
+  }
+
 
   private resizeWindow(
     event: PointerEvent
@@ -526,47 +681,54 @@ export class XpExplorer implements AfterViewInit {
     let height =
       start.height;
 
+
     if (
       this.resizeDirection.includes(
         'e'
       )
     ) {
-      width = Math.max(
-        minimumWidth,
-        start.width +
+      width =
+        Math.max(
+          minimumWidth,
+          start.width +
           deltaX
-      );
+        );
 
-      width = Math.min(
-        width,
-        hostWidth -
+      width =
+        Math.min(
+          width,
+          hostWidth -
           Math.max(
             0,
             start.left
           )
-      );
+        );
     }
+
 
     if (
       this.resizeDirection.includes(
         's'
       )
     ) {
-      height = Math.max(
-        minimumHeight,
-        start.height +
+      height =
+        Math.max(
+          minimumHeight,
+          start.height +
           deltaY
-      );
+        );
 
-      height = Math.min(
-        height,
-        hostHeight -
+      height =
+        Math.min(
+          height,
+          hostHeight -
           Math.max(
             0,
             start.top
           )
-      );
+        );
     }
+
 
     if (
       this.resizeDirection.includes(
@@ -577,22 +739,25 @@ export class XpExplorer implements AfterViewInit {
         start.left +
         start.width;
 
-      width = Math.max(
-        minimumWidth,
-        start.width -
+      width =
+        Math.max(
+          minimumWidth,
+          start.width -
           deltaX
-      );
+        );
 
-      width = Math.min(
-        width,
-        maximumWidth
-      );
+      width =
+        Math.min(
+          width,
+          maximumWidth
+        );
 
       left =
         start.left +
         start.width -
         width;
     }
+
 
     if (
       this.resizeDirection.includes(
@@ -603,22 +768,25 @@ export class XpExplorer implements AfterViewInit {
         start.top +
         start.height;
 
-      height = Math.max(
-        minimumHeight,
-        start.height -
+      height =
+        Math.max(
+          minimumHeight,
+          start.height -
           deltaY
-      );
+        );
 
-      height = Math.min(
-        height,
-        maximumHeight
-      );
+      height =
+        Math.min(
+          height,
+          maximumHeight
+        );
 
       top =
         start.top +
         start.height -
         height;
     }
+
 
     this.left.set(
       Math.round(
@@ -645,7 +813,35 @@ export class XpExplorer implements AfterViewInit {
     this.height.set(
       Math.round(height)
     );
+
+    this.syncGeometry();
   }
+
+
+  /* =====================================================
+     POINTER EVENTS
+  ===================================================== */
+
+  @HostListener(
+    'document:pointermove',
+    ['$event']
+  )
+  onPointerMove(
+    event: PointerEvent
+  ): void {
+    if (this.dragging) {
+      this.moveWindow(event);
+      return;
+    }
+
+    if (
+      this.resizeDirection &&
+      this.resizeStartBounds
+    ) {
+      this.resizeWindow(event);
+    }
+  }
+
 
   @HostListener(
     'document:pointerup'
@@ -654,12 +850,14 @@ export class XpExplorer implements AfterViewInit {
     this.stopPointerInteraction();
   }
 
+
   @HostListener(
     'document:pointercancel'
   )
   onPointerCancel(): void {
     this.stopPointerInteraction();
   }
+
 
   private stopPointerInteraction(): void {
     if (
@@ -699,6 +897,11 @@ export class XpExplorer implements AfterViewInit {
       null;
   }
 
+
+  /* =====================================================
+     VIEWPORT RESIZE
+  ===================================================== */
+
   @HostListener(
     'window:resize'
   )
@@ -709,7 +912,9 @@ export class XpExplorer implements AfterViewInit {
     }
 
     this.clampWindowToHost();
+    this.syncGeometry();
   }
+
 
   private clampWindowToHost(): void {
     const hostWidth =
@@ -743,37 +948,35 @@ export class XpExplorer implements AfterViewInit {
         width
       );
 
-    const renderedHeight =
-      this.minimized()
-        ? 29
-        : height;
-
     const left =
       Math.max(
         -width +
-          visibleHorizontal,
+        visibleHorizontal,
+
         Math.min(
           this.left(),
           hostWidth -
-            visibleHorizontal
+          visibleHorizontal
         )
       );
 
     const top =
       Math.max(
         0,
+
         Math.min(
           this.top(),
-          hostHeight -
-            Math.min(
-              29,
-              renderedHeight
-            )
+          hostHeight - 29
         )
       );
 
-    this.width.set(width);
-    this.height.set(height);
+    this.width.set(
+      width
+    );
+
+    this.height.set(
+      height
+    );
 
     this.left.set(
       Math.round(left)
@@ -781,6 +984,52 @@ export class XpExplorer implements AfterViewInit {
 
     this.top.set(
       Math.round(top)
+    );
+  }
+
+
+  /* =====================================================
+     GEOMETRY
+  ===================================================== */
+
+  private applyBounds(
+    bounds: WindowBounds
+  ): void {
+    this.left.set(
+      bounds.left
+    );
+
+    this.top.set(
+      bounds.top
+    );
+
+    this.width.set(
+      bounds.width
+    );
+
+    this.height.set(
+      bounds.height
+    );
+  }
+
+
+  private syncGeometry(): void {
+    this.windowManager.updateGeometry(
+      this.windowId,
+      {
+        bounds: {
+          left: this.left(),
+          top: this.top(),
+          width: this.width(),
+          height: this.height()
+        },
+
+        restoreBounds:
+          this.previousBounds,
+
+        maximized:
+          this.maximized()
+      }
     );
   }
 }

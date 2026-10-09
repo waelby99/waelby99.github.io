@@ -5,22 +5,38 @@ import {
   signal
 } from '@angular/core';
 
-import { TranslatePipe } from '@ngx-translate/core';
+import {
+  TranslatePipe
+} from '@ngx-translate/core';
 
 import {
   DesktopIcon,
   DesktopService
 } from '../../core/services/desktop';
 
-import { DisplayProperties } from '../../applications/display-properties/display-properties';
-import { Education } from '../../applications/education/education';
-import { AboutMe } from '../../applications/about-me/about-me';
+import {
+  WindowManagerService
+} from '../../core/services/window-manager';
+
+import {
+  DisplayProperties
+} from '../../applications/display-properties/display-properties';
+
+import {
+  Education
+} from '../../applications/education/education';
+
+import {
+  AboutMe
+} from '../../applications/about-me/about-me';
 
 import type {
   PortfolioSection
 } from '../../shared/components/xp-other-places/xp-other-places';
 
-import { Taskbar } from '../taskbar/taskbar';
+import {
+  Taskbar
+} from '../taskbar/taskbar';
 
 
 type DesktopSubmenu =
@@ -32,6 +48,7 @@ type DesktopSubmenu =
 @Component({
   selector: 'app-desktop',
   standalone: true,
+
   imports: [
     TranslatePipe,
     DisplayProperties,
@@ -39,6 +56,7 @@ type DesktopSubmenu =
     AboutMe,
     Taskbar
   ],
+
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss'
 })
@@ -46,20 +64,13 @@ export class Desktop {
   readonly desktopService =
     inject(DesktopService);
 
+  readonly windowManager =
+    inject(WindowManagerService);
+
+
   readonly iconsVisible =
     signal(true);
 
-  readonly cmdOpen =
-    signal(false);
-
-  readonly displayPropertiesOpen =
-    signal(false);
-
-  readonly educationOpen =
-    signal(false);
-
-  readonly aboutMeOpen =
-    signal(false);
 
   readonly contextMenuOpen =
     signal(false);
@@ -72,6 +83,7 @@ export class Desktop {
 
   readonly activeSubmenu =
     signal<DesktopSubmenu>(null);
+
 
   readonly startupNoticeOpen =
     signal(
@@ -128,7 +140,7 @@ export class Desktop {
 
 
   /* =====================================================
-     DESKTOP ICON DRAGGING
+     DESKTOP ICON DRAG
   ===================================================== */
 
   startIconDrag(
@@ -196,12 +208,6 @@ export class Desktop {
         this.dragStartY
       );
 
-    /*
-     * Ignore tiny pointer movements.
-     *
-     * This prevents a normal double-click
-     * from accidentally becoming an icon drag.
-     */
     if (
       !this.iconWasDragged &&
       distanceX < 4 &&
@@ -210,7 +216,8 @@ export class Desktop {
       return;
     }
 
-    this.iconWasDragged = true;
+    this.iconWasDragged =
+      true;
 
     const desktop =
       event.currentTarget;
@@ -244,15 +251,17 @@ export class Desktop {
         rect.height - 130
       );
 
-    x = Math.max(
-      0,
-      Math.min(x, maxX)
-    );
+    x =
+      Math.max(
+        0,
+        Math.min(x, maxX)
+      );
 
-    y = Math.max(
-      0,
-      Math.min(y, maxY)
-    );
+    y =
+      Math.max(
+        0,
+        Math.min(y, maxY)
+      );
 
     this.desktopService.moveIcon(
       this.draggingIconId,
@@ -287,10 +296,6 @@ export class Desktop {
     event.preventDefault();
     event.stopPropagation();
 
-    /*
-     * Do not open an application immediately
-     * after its desktop icon was dragged.
-     */
     if (this.iconWasDragged) {
       this.iconWasDragged = false;
       return;
@@ -318,51 +323,66 @@ export class Desktop {
 
 
   /* =====================================================
-     ABOUT ME
+     APPLICATIONS
   ===================================================== */
 
   openAboutMe(): void {
-    this.aboutMeOpen.set(true);
+    this.windowManager.open(
+      'about'
+    );
+
     this.closeContextMenu();
   }
 
-
-  closeAboutMe(): void {
-    this.aboutMeOpen.set(false);
-  }
-
-
-  /* =====================================================
-     EDUCATION
-  ===================================================== */
 
   openEducation(): void {
-    this.educationOpen.set(true);
+    this.windowManager.open(
+      'education'
+    );
+
     this.closeContextMenu();
   }
 
 
-  closeEducation(): void {
-    this.educationOpen.set(false);
+  openCommandPrompt(): void {
+    this.windowManager.open(
+      'cmd'
+    );
+
+    this.closeContextMenu();
+  }
+
+
+  openDisplayProperties(): void {
+    this.windowManager.open(
+      'display-properties'
+    );
+
+    this.closeContextMenu();
   }
 
 
   /* =====================================================
-     PORTFOLIO NAVIGATION
+     NAVIGATION INSIDE SAME WINDOW
   ===================================================== */
 
-  openPortfolioSection(
+  navigateWindow(
+    windowId: string,
     section: PortfolioSection
   ): void {
     switch (section) {
       case 'about':
-        this.aboutMeOpen.set(true);
-        this.educationOpen.set(false);
+        this.windowManager.navigate(
+          windowId,
+          'about'
+        );
         break;
 
       case 'education':
-        this.educationOpen.set(true);
-        this.aboutMeOpen.set(false);
+        this.windowManager.navigate(
+          windowId,
+          'education'
+        );
         break;
 
       case 'projects':
@@ -379,48 +399,16 @@ export class Desktop {
 
       default:
         console.log(
-          'Portfolio section not implemented yet:',
+          'Portfolio section not implemented:',
           section
         );
         break;
     }
-
-    this.closeContextMenu();
   }
 
 
   /* =====================================================
-     COMMAND PROMPT
-  ===================================================== */
-
-  openCommandPrompt(): void {
-    this.cmdOpen.set(true);
-    this.closeContextMenu();
-  }
-
-
-  closeCommandPrompt(): void {
-    this.cmdOpen.set(false);
-  }
-
-
-  /* =====================================================
-     DISPLAY PROPERTIES
-  ===================================================== */
-
-  openDisplayProperties(): void {
-    this.displayPropertiesOpen.set(true);
-    this.closeContextMenu();
-  }
-
-
-  closeDisplayProperties(): void {
-    this.displayPropertiesOpen.set(false);
-  }
-
-
-  /* =====================================================
-     DESKTOP CONTEXT MENU
+     CONTEXT MENU
   ===================================================== */
 
   openDesktopContextMenu(
@@ -457,19 +445,21 @@ export class Desktop {
     const menuHeight =
       310;
 
-    x = Math.min(
-      x,
-      window.innerWidth -
-      menuWidth -
-      5
-    );
+    x =
+      Math.min(
+        x,
+        window.innerWidth -
+        menuWidth -
+        5
+      );
 
-    y = Math.min(
-      y,
-      window.innerHeight -
-      menuHeight -
-      45
-    );
+    y =
+      Math.min(
+        y,
+        window.innerHeight -
+        menuHeight -
+        45
+      );
 
     this.contextMenuX.set(
       Math.max(0, x)
@@ -508,18 +498,15 @@ export class Desktop {
 
 
   /* =====================================================
-     REFRESH
+     DESKTOP ACTIONS
   ===================================================== */
 
   refreshDesktop(): void {
     this.desktopService.refresh();
+
     this.closeContextMenu();
   }
 
-
-  /* =====================================================
-     SORT ICONS
-  ===================================================== */
 
   sortIconsByName(): void {
     this.desktopService
@@ -536,10 +523,6 @@ export class Desktop {
     this.closeContextMenu();
   }
 
-
-  /* =====================================================
-     CREATE FILE / FOLDER
-  ===================================================== */
 
   createFolder(): void {
     this.desktopService.createFolder(
@@ -597,7 +580,9 @@ export class Desktop {
   ===================================================== */
 
   closeStartupNotice(): void {
-    this.startupNoticeOpen.set(false);
+    this.startupNoticeOpen.set(
+      false
+    );
 
     sessionStorage.setItem(
       'xp-startup-notice-seen',
@@ -616,9 +601,7 @@ export class Desktop {
   }
 
 
-  @HostListener(
-    'document:keydown.escape'
-  )
+  @HostListener('document:keydown.escape')
   onEscape(): void {
     this.closeContextMenu();
   }

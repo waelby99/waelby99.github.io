@@ -15,7 +15,10 @@
   ================================================== -->
 
   @if (iconsVisible()) {
-    @for (icon of desktopService.icons(); track icon.id) {
+    @for (
+      icon of desktopService.icons();
+      track icon.id
+    ) {
       <button
         class="desktop-icon"
         type="button"
@@ -51,108 +54,119 @@
 
   <div class="windows-area">
 
-    <!-- ABOUT ME -->
+    @for (
+      window of windowManager.windows();
+      track window.id
+    ) {
+      <div
+        class="window-instance"
+        [class.window-instance-hidden]="window.minimized"
+        [style.z-index]="window.zIndex"
+        (pointerdown)="windowManager.focus(window.id)"
+      >
 
-    @if (aboutMeOpen()) {
-      <app-about-me
-        (closed)="closeAboutMe()"
-        (navigate)="openPortfolioSection($event)"
-      />
-    }
+        @switch (window.app) {
+
+          @case ('about') {
+            <app-about-me
+              [windowId]="window.id"
+              (closed)="windowManager.close(window.id)"
+              (navigate)="navigateWindow(window.id, $event)"
+            />
+          }
 
 
-    <!-- EDUCATION -->
+          @case ('education') {
+            <app-education
+              [windowId]="window.id"
+              (closed)="windowManager.close(window.id)"
+              (navigate)="navigateWindow(window.id, $event)"
+            />
+          }
 
-    @if (educationOpen()) {
-      <app-education
-        (closed)="closeEducation()"
-        (navigate)="openPortfolioSection($event)"
-      />
+
+          @case ('cmd') {
+            <div
+              class="window cmd-window"
+              (click)="$event.stopPropagation()"
+              (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
+            >
+              <div class="title-bar">
+
+                <div class="title-bar-text">
+                  C:\WINDOWS\system32\cmd.exe
+                </div>
+
+
+                <div class="title-bar-controls">
+
+                  <button
+                    type="button"
+                    aria-label="Minimize"
+                    (click)="
+                      $event.stopPropagation();
+                      windowManager.minimize(window.id)
+                    "
+                  ></button>
+
+
+                  <button
+                    type="button"
+                    aria-label="Maximize"
+                  ></button>
+
+
+                  <button
+                    type="button"
+                    aria-label="Close"
+                    (click)="
+                      $event.stopPropagation();
+                      windowManager.close(window.id)
+                    "
+                  ></button>
+
+                </div>
+
+              </div>
+
+
+              <div class="window-body cmd-body">
+
+                <div>
+                  Microsoft Windows XP [Version 5.1.2600]
+                </div>
+
+                <div>
+                  (C) Copyright 1985-2001 Microsoft Corp.
+                </div>
+
+                <br />
+
+                <div>
+                  C:\Documents and Settings\Wael&gt;
+
+                  <span class="cmd-cursor">
+                    _
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          }
+
+
+          @case ('display-properties') {
+            <app-display-properties
+              (closed)="windowManager.close(window.id)"
+            />
+          }
+
+        }
+
+      </div>
     }
 
   </div>
-
-
-  <!-- =================================================
-       COMMAND PROMPT
-  ================================================== -->
-
-  @if (cmdOpen()) {
-    <div
-      class="window cmd-window"
-      (click)="$event.stopPropagation()"
-      (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
-    >
-      <div class="title-bar">
-
-        <div class="title-bar-text">
-          C:\WINDOWS\system32\cmd.exe
-        </div>
-
-
-        <div class="title-bar-controls">
-
-          <button
-            type="button"
-            aria-label="Minimize"
-          ></button>
-
-
-          <button
-            type="button"
-            aria-label="Maximize"
-          ></button>
-
-
-          <button
-            type="button"
-            aria-label="Close"
-            (click)="closeCommandPrompt()"
-          ></button>
-
-        </div>
-
-      </div>
-
-
-      <div class="window-body cmd-body">
-
-        <div>
-          Microsoft Windows XP [Version 5.1.2600]
-        </div>
-
-
-        <div>
-          (C) Copyright 1985-2001 Microsoft Corp.
-        </div>
-
-
-        <br />
-
-
-        <div>
-          C:\Documents and Settings\Wael&gt;
-
-          <span class="cmd-cursor">
-            _
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-  }
-
-
-  <!-- =================================================
-       DISPLAY PROPERTIES
-  ================================================== -->
-
-  @if (displayPropertiesOpen()) {
-    <app-display-properties
-      (closed)="closeDisplayProperties()"
-    />
-  }
 
 
   <!-- =================================================
@@ -168,9 +182,7 @@
       (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
     >
 
-      <!-- =================================================
-           REFRESH
-      ================================================== -->
+      <!-- REFRESH -->
 
       <button
         class="context-item"
@@ -189,9 +201,7 @@
       </button>
 
 
-      <!-- =================================================
-           SORT BY
-      ================================================== -->
+      <!-- SORT -->
 
       <div
         class="context-submenu-wrapper"
@@ -251,9 +261,7 @@
       <div class="context-separator"></div>
 
 
-      <!-- =================================================
-           OPEN COMMAND PROMPT
-      ================================================== -->
+      <!-- CMD -->
 
       <button
         class="context-item"
@@ -280,9 +288,7 @@
       <div class="context-separator"></div>
 
 
-      <!-- =================================================
-           NEW
-      ================================================== -->
+      <!-- NEW -->
 
       <div
         class="context-submenu-wrapper"
@@ -310,8 +316,6 @@
         @if (activeSubmenu() === 'new') {
           <div class="context-submenu">
 
-            <!-- FOLDER -->
-
             <button
               type="button"
               (click)="createFolder()"
@@ -328,8 +332,6 @@
               </span>
             </button>
 
-
-            <!-- TEXT DOCUMENT -->
 
             <button
               type="button"
@@ -356,9 +358,7 @@
       <div class="context-separator"></div>
 
 
-      <!-- =================================================
-           FULLSCREEN
-      ================================================== -->
+      <!-- FULLSCREEN -->
 
       <button
         class="context-item"
@@ -377,9 +377,7 @@
       </button>
 
 
-      <!-- =================================================
-           PROPERTIES
-      ================================================== -->
+      <!-- DISPLAY PROPERTIES -->
 
       <button
         class="context-item"
@@ -410,20 +408,16 @@
       class="startup-notice-overlay"
       (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
     >
-
       <div
         class="window startup-notice"
         (click)="$event.stopPropagation()"
       >
-
-        <!-- TITLE BAR -->
 
         <div class="title-bar">
 
           <div class="title-bar-text">
             Portfolio Update
           </div>
-
 
           <div class="title-bar-controls">
 
@@ -437,8 +431,6 @@
 
         </div>
 
-
-        <!-- BODY -->
 
         <div class="window-body startup-notice-body">
 
@@ -458,13 +450,11 @@
                 Welcome!
               </p>
 
-
               <p>
                 This portfolio is still under active
                 development. Some applications and
                 features are still being added or refined.
               </p>
-
 
               <p>
                 You're viewing an early public version —
@@ -491,7 +481,6 @@
         </div>
 
       </div>
-
     </div>
   }
 
